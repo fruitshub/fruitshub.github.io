@@ -1,86 +1,42 @@
-# Re-creating the index.html file after code execution environment reset
-
-html_content = """<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Nachole Fruits Hub</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #fff8e1;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-    }
-    header {
-      background: #ffcc00;
-      padding: 20px;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2em;
-    }
-    img.logo {
-      width: 120px;
-    }
-    .form-section {
-      padding: 20px;
-      max-width: 600px;
-      margin: auto;
-    }
-    input, textarea {
-      width: 90%;
-      padding: 10px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-    }
-    button {
-      padding: 10px 20px;
-      background: green;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-    footer {
-      background: #eee;
-      padding: 10px;
-      margin-top: 40px;
-    }
-  </style>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <header>
-    <img src="logo.png" alt="Nachole Fruits Hub" class="logo"/>
-    <h1>Nachole Fruits Hub</h1>
-    <p>Order fresh, juicy mangoes directly from Nachole!</p>
+  <header class="bg-success text-white text-center py-3 sticky-top">
+    <div class="container">
+      <img src="logo.png" alt="Nachole Fruits Hub Logo" height="60">
+      <h1>Nachole Fruits Hub</h1>
+      <p>Order fresh, juicy mangoes directly from Nachole!</p>
+      <nav class="nav justify-content-center">
+        <a class="nav-link text-white" href="#">Home</a>
+        <a class="nav-link text-white" href="#">About</a>
+        <a class="nav-link text-white" href="#">Contact</a>
+        <a class="nav-link text-white" href="#">Order</a>
+        <button id="langToggle" class="btn btn-warning btn-sm ms-3">বাংলা</button>
+      </nav>
+    </div>
   </header>
 
-  <section class="form-section">
-    <h2>Place Your Order</h2>
-    <form action="https://formspree.io/f/mqaqbjbe" method="POST">
-      <input type="text" name="name" placeholder="Your Name" required />
-      <input type="tel" name="phone" placeholder="Phone Number" required />
-      <input type="text" name="address" placeholder="Full Address" required />
-      <input type="number" name="quantity" placeholder="Quantity (kg)" required />
-      <textarea name="note" placeholder="Any notes or instructions"></textarea>
-      <button type="submit">Submit Order</button>
-    </form>
-  </section>
+  <main class="container my-5">
+    <section id="home">
+      <h2>Welcome to Nachole Fruits Hub</h2>
+      <p>We bring you the finest mangoes directly from the orchards of Nachole. Juicy, fresh, and chemical-free!</p>
+      <button class="btn btn-success">Order Now</button>
+      <div class="row mt-4">
+        <div class="col-md-4"><img src="mango1.jpg" class="img-fluid" alt="Mango 1"></div>
+        <div class="col-md-4"><img src="mango2.jpg" class="img-fluid" alt="Mango 2"></div>
+        <div class="col-md-4"><img src="orchard.jpg" class="img-fluid" alt="Orchard"></div>
+      </div>
+    </section>
+  </main>
 
-  <footer>
-    &copy; 2025 Nachole Fruits Hub. All rights reserved.
-  </footer>
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
-"""
-
-# Save the HTML content to a file
-file_path = "/mnt/data/index.html"
-with open(file_path, "w", encoding="utf-8") as f:
-    f.write(html_content)
-
-file_path
