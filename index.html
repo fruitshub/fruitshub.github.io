@@ -8,26 +8,30 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="bg-success text-white text-center py-3 sticky-top">
-    <div class="container">
-      <img src="logo.png" alt="Nachole Fruits Hub Logo" height="60">
-      <h1>Nachole Fruits Hub</h1>
-      <p>Order fresh, juicy mangoes directly from Nachole!</p>
-      <nav class="nav justify-content-center">
-        <a class="nav-link text-white" href="#">Home</a>
-        <a class="nav-link text-white" href="#">About</a>
-        <a class="nav-link text-white" href="#">Contact</a>
-        <a class="nav-link text-white" href="#">Order</a>
-        <button id="langToggle" class="btn btn-warning btn-sm ms-3">বাংলা</button>
-      </nav>
+  <header class="bg-success text-white sticky-top">
+    <div class="container d-flex justify-content-between align-items-center py-3">
+      <div class="d-flex align-items-center">
+        <img src="logo.png" alt="Nachole Fruits Hub Logo" height="60" class="me-3">
+        <div>
+          <h1 class="h4 mb-0">Nachole Fruits Hub</h1>
+          <p class="mb-0">Order fresh, juicy mangoes directly from Nachole!</p>
+        </div>
+      </div>
+      <button id="langToggle" class="btn btn-warning btn-sm">বাংলা</button>
     </div>
+    <nav class="nav justify-content-center bg-success">
+      <a class="nav-link text-white" href="index.html">Home</a>
+      <a class="nav-link text-white" href="about.html">About</a>
+      <a class="nav-link text-white" href="contact.html">Contact</a>
+      <a class="nav-link text-white" href="order.html">Order</a>
+    </nav>
   </header>
 
   <main class="container my-5">
     <section id="home">
       <h2>Welcome to Nachole Fruits Hub</h2>
       <p>We bring you the finest mangoes directly from the orchards of Nachole. Juicy, fresh, and chemical-free!</p>
-      <button class="btn btn-success">Order Now</button>
+      <a href="order.html" class="btn btn-success">Order Now</a>
       <div class="row mt-4">
         <div class="col-md-4"><img src="mango1.jpg" class="img-fluid" alt="Mango 1"></div>
         <div class="col-md-4"><img src="mango2.jpg" class="img-fluid" alt="Mango 2"></div>
