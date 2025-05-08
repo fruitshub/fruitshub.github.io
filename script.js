@@ -1,16 +1,26 @@
-let currentLang = 'en';
+let currentLang = localStorage.getItem('lang') || 'en';
+setLanguage(currentLang);
 
-document.getElementById('langToggle').addEventListener('click', function () {
-  currentLang = currentLang === 'en' ? 'bn' : 'en';
+document.getElementById('langEn').addEventListener('click', () => setLanguage('en'));
+document.getElementById('langBn').addEventListener('click', () => setLanguage('bn'));
+
+function setLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem('lang', lang);
   updateLanguage();
-  this.textContent = currentLang === 'en' ? 'বাংলা' : 'English';
-});
+  highlightActiveLangButton();
+}
 
 function updateLanguage() {
   document.querySelectorAll('.lang').forEach(el => {
-    const translation = el.dataset[currentLang];
-    if (translation) {
-      el.textContent = translation;
-    }
+    const text = el.dataset[currentLang];
+    if (text) el.textContent = text;
   });
+}
+
+function highlightActiveLangButton() {
+  document.getElementById('langEn').classList.toggle('btn-warning', currentLang === 'en');
+  document.getElementById('langBn').classList.toggle('btn-warning', currentLang === 'bn');
+  document.getElementById('langEn').classList.toggle('btn-light', currentLang !== 'en');
+  document.getElementById('langBn').classList.toggle('btn-light', currentLang !== 'bn');
 }
