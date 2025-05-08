@@ -1,12 +1,16 @@
-document.getElementById('langToggle').addEventListener('click', function() {
-  alert('Language switching will be added soon.');
+let currentLang = 'en';
+
+document.getElementById('langToggle').addEventListener('click', function () {
+  currentLang = currentLang === 'en' ? 'bn' : 'en';
+  updateLanguage();
+  this.textContent = currentLang === 'en' ? 'বাংলা' : 'English';
 });
 
-document.querySelectorAll('.lang-toggle').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const lang = btn.dataset.lang;
-    document.querySelectorAll('.lang').forEach(el => {
-      el.innerText = el.dataset[lang];
-    });
+function updateLanguage() {
+  document.querySelectorAll('.lang').forEach(el => {
+    const translation = el.dataset[currentLang];
+    if (translation) {
+      el.textContent = translation;
+    }
   });
-});
+}
