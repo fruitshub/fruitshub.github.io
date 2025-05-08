@@ -2,53 +2,93 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Nachole Fruits Hub</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #fffbe6; color: #333; }
-    header { background-color: #ffce54; padding: 2rem; text-align: center; }
-    header img { height: 100px; }
-    header h1 { margin: 0.5rem 0 0; font-size: 2rem; }
-    section { padding: 2rem; max-width: 800px; margin: auto; }
-    .cta-button {
-      display: inline-block;
-      padding: 0.8rem 1.5rem;
-      background-color: #ff9933;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      font-weight: bold;
-      margin-top: 1rem;
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+      background-color: #fffdee;
+      color: #333;
     }
-    footer { background-color: #eee; text-align: center; padding: 1rem; margin-top: 2rem; }
+    header {
+      background-color: #f7c948;
+      padding: 20px;
+      text-align: center;
+    }
+    header img {
+      max-width: 120px;
+    }
+    h1 {
+      margin: 10px 0 5px;
+    }
+    .section {
+      padding: 30px 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+    .button {
+      display: inline-block;
+      background-color: #ffa500;
+      color: white;
+      padding: 12px 24px;
+      margin-top: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 5px;
+    }
+    .gallery img {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 10px;
+      margin: 10px 0;
+    }
+    footer {
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
+      background-color: #f1f1f1;
+    }
   </style>
 </head>
 <body>
+
   <header>
     <img src="logo.png" alt="Nachole Fruits Hub Logo" />
-    <h1>Welcome to Nachole Fruits Hub</h1>
-    <p>Fresh Mangoes Direct from Nachole Gardens</p>
+    <h1>Nachole Fruits Hub</h1>
+    <p>Fresh Mangoes Direct from Garden</p>
   </header>
 
-  <section>
+  <section class="section">
     <h2>About Us</h2>
-    <p>We bring you hand-picked, chemical-free mangoes directly from the orchards of Nachole, Chapainawabganj. Trusted by hundreds of satisfied customers across Bangladesh.</p>
+    <p>We deliver premium quality mangoes straight from our gardens in Nachole, Chapainawabganj. No middlemen, no chemicals — just pure, natural mangoes harvested with care.</p>
+  </section>
 
+  <section class="section">
     <h2>Our Mangoes</h2>
     <ul>
       <li>Himsagar</li>
       <li>Langra</li>
       <li>Fazli</li>
-      <li>Amropali</li>
+      <li>Amrapali</li>
     </ul>
+  </section>
 
+  <section class="section gallery">
+    <h2>Mango Garden View</h2>
+    <img src="mango-orchard.jpg" alt="Mango Orchard" />
+    <img src="ripe-mango.jpg" alt="Ripe Mango" />
+  </section>
+
+  <section class="section" style="text-align:center;">
     <h2>Order Now</h2>
-    <p>Click the button below to place your mango order via our simple form.</p>
-    <a class="cta-button" href="https://docs.google.com/forms/d/e/1FAIpQLScoyStVfZzXndBIWVpjGVZwJaXcQ9mG4iUFCENhmIOjUrbfFg/viewform?usp=preview">Order Now</a>
+    <p>Click below to place your order via Google Form:</p>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLScoyStVfZzXndBIWVpjGVZwJaXcQ9mG4iUFCENhmIOjUrbfFg/viewform?usp=header">Order Now</a>
   </section>
 
   <footer>
-    <p>Call Us: 01743-127122 | Nachole, Chapainawabganj</p>
+    ?? Contact: 01743-127122 | ?? Nachole, Chapainawabganj  
   </footer>
+
 </body>
 </html>
