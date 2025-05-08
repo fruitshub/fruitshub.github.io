@@ -1,6 +1,13 @@
 body {
   font-family: Arial, sans-serif;
 }
+
 header img {
   margin-bottom: 10px;
+}
+
+/* Highlight the active nav link */
+.nav-link.active {
+  text-decoration: underline;
+  font-weight: bold;
 }
