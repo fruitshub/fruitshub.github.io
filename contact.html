@@ -1,46 +1,54 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact | Nachole Fruits Hub</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact | Nachole Fruits Hub</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <header>
-        <img src="images/logo.png" alt="Nachole Fruits Hub Logo" class="logo">
-        <h1>Nachole Fruits Hub</h1>
-        <p>Order fresh, juicy mangoes directly from Nachole!</p>
-        <nav>
-            <ul>
-                <li><a href="index.html" class="lang" key="home">Home</a></li>
-                <li><a href="about.html" class="lang" key="about">About</a></li>
-                <li><a href="contact.html" class="lang" key="contact">Contact</a></li>
-                <li><a href="order.html" class="lang" key="order">Order</a></li>
-            </ul>
-        </nav>
-        <button onclick="toggleLanguage()">বাংলা / English</button>
-    </header>
+  <header class="bg-success text-white sticky-top">
+    <div class="container d-flex justify-content-between align-items-center py-3">
+      <div class="d-flex align-items-center">
+        <img src="logo.png" alt="Nachole Fruits Hub Logo" height="60" class="me-3" />
+        <div>
+          <h1 class="h4 mb-0 lang" data-en="Nachole Fruits Hub" data-bn="নাচোল ফল হাব">Nachole Fruits Hub</h1>
+          <p class="mb-0 lang" data-en="Order fresh, juicy mangoes directly from Nachole!" data-bn="নাচোল থেকে সরাসরি তাজা, রসালো আম অর্ডার করুন!">
+            Order fresh, juicy mangoes directly from Nachole!
+          </p>
+        </div>
+      </div>
+      <button id="langToggle" class="btn btn-warning btn-sm">বাংলা</button>
+    </div>
+    <nav class="nav justify-content-center bg-success">
+      <a class="nav-link text-white lang" data-en="Home" data-bn="হোম" href="index.html">Home</a>
+      <a class="nav-link text-white lang" data-en="About" data-bn="আমাদের সম্পর্কে" href="about.html">About</a>
+      <a class="nav-link text-white lang" data-en="Contact" data-bn="যোগাযোগ" href="contact.html">Contact</a>
+      <a class="nav-link text-white lang" data-en="Order" data-bn="অর্ডার" href="order.html">Order</a>
+    </nav>
+  </header>
 
-    <main>
-        <section class="contact-info">
-            <h2 class="lang" key="contactTitle">Contact Us</h2>
-            <p class="lang" key="contactDescription">
-                We'd love to hear from you! Reach out to us for any queries or bulk orders.
-            </p>
-            <ul>
-                <li><strong class="lang" key="phone">Phone:</strong> 017XXXXXXXX</li>
-                <li><strong class="lang" key="email">Email:</strong> contact@fruitshub.com</li>
-                <li><strong class="lang" key="address">Address:</strong> Nachole, Chapainawabganj, Bangladesh</li>
-            </ul>
-        </section>
-    </main>
+  <main class="container my-5">
+    <section class="contact-info">
+      <h2 class="lang" data-en="Contact Us" data-bn="যোগাযোগ করুন">Contact Us</h2>
+      <p class="lang" data-en="We'd love to hear from you! Reach out to us for any queries or bulk orders."
+         data-bn="আমরা আপনার কথা শুনতে আগ্রহী! যেকোনো প্রশ্ন বা বৃহৎ অর্ডারের জন্য আমাদের সাথে যোগাযোগ করুন।">
+        We'd love to hear from you! Reach out to us for any queries or bulk orders.
+      </p>
+      <ul>
+        <li><strong class="lang" data-en="Phone:" data-bn="ফোন:">Phone:</strong> 017XXXXXXXX</li>
+        <li><strong class="lang" data-en="Email:" data-bn="ইমেইল:">Email:</strong> contact@fruitshub.com</li>
+        <li><strong class="lang" data-en="Address:" data-bn="ঠিকানা:">Address:</strong> Nachole, Chapainawabganj, Bangladesh</li>
+      </ul>
+    </section>
+  </main>
 
-    <footer>
-        <p>&copy; 2025 Nachole Fruits Hub. All rights reserved.</p>
-    </footer>
+  <footer class="text-center mt-5">
+    <p>&copy; 2025 Nachole Fruits Hub. All rights reserved.</p>
+  </footer>
 
-    <script src="lang.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
