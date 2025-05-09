@@ -19,7 +19,7 @@ header img {
   white-space: nowrap;
   overflow: hidden;
   display: inline-block;
-  animation: marquee 18s linear infinite;
+  animation: marquee 20s linear infinite;
   font-size: 22px;
   font-weight: bold;
   line-height: 1.6;
