@@ -12,7 +12,7 @@ header img {
   font-weight: bold;
 }
 .text-orange {
-  color: #fcb300 !important;  /* ensures it overrides white */
+  color: #ff9f00 !important;  /* ensures it overrides white */
 }
 
 .marquee {
