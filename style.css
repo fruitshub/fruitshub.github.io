@@ -16,7 +16,7 @@ header img {
   overflow: hidden;
   display: inline-block;
   animation: marquee 20s linear infinite;
-  font-size: 22 px;
+  font-size: 0.9rem;
   line-height: 1.8;
 }
 
