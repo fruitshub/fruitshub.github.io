@@ -16,8 +16,9 @@ header img {
   overflow: hidden;
   display: inline-block;
   animation: marquee 20s linear infinite;
-  font-size: 0.9rem;
-  line-height: 1.8;
+  font-size: 22px;
+  font-weight: bold;
+  line-height: 1.6;
 }
 
 @keyframes marquee {
