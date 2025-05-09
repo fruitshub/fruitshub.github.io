@@ -36,4 +36,8 @@ function highlightActiveNav() {
   });
 }
 
+.text-orange {
+  color: #ff6600;
+}
+
 highlightActiveNav();
