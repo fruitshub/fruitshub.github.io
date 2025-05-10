@@ -30,3 +30,34 @@ header img {
   0%   { transform: translateX(100%); }
   100% { transform: translateX(-100%); }
 }
+
+@media (max-width: 576px) {
+  header img {
+    height: 40px;
+  }
+
+  header h1 {
+    font-size: 1.2rem;
+    margin-bottom: 0.2rem;
+  }
+
+  header p {
+    font-size: 0.9rem;
+    margin-bottom: 0;
+  }
+
+  .marquee {
+    font-size: 14px;
+    padding: 4px 0;
+  }
+
+  .btn-group button {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+  }
+
+  .nav-link {
+    font-size: 0.9rem;
+    padding: 6px 10px;
+  }
+}
