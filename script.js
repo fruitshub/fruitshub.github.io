@@ -43,21 +43,31 @@ highlightActiveNav();
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('orderForm');
-  if (form) {
-    form.addEventListener('submit', function (e) {
-      const payment = document.getElementById('payment').value;
-      if (payment !== 'cod') {
-        e.preventDefault();
-        let redirectUrl = '#';
-        if (payment === 'bkash') redirectUrl = 'payment-bkash.html';
-        else if (payment === 'nagad') redirectUrl = 'payment-nagad.html';
-        else if (payment === 'rocket') redirectUrl = 'payment-rocket.html';
-        else if (payment === 'bank') redirectUrl = 'payment-bank.html';
+  if (!form) return;
 
-        window.location.href = redirectUrl;
-      }
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+    const payment = formData.get('payment_method');
+    const actionURL = form.getAttribute('action');
+
+    fetch(actionURL, {
+      method: 'POST',
+      body: formData,
+    })
+    .then(response => {
+      if (!response.ok) throw new Error('Submission failed');
+      if (payment === 'bkash') window.location.href = 'payment-bkash.html';
+      else if (payment === 'nagad') window.location.href = 'payment-nagad.html';
+      else if (payment === 'rocket') window.location.href = 'payment-rocket.html';
+      else if (payment === 'bank') window.location.href = 'payment-bank.html';
+      else window.location.href = 'thank-you.html'; // Optional for COD
+    })
+    .catch(error => {
+      alert("Error submitting order. Please try again.");
+      console.error(error);
     });
-  }
+  });
 });
-
 
