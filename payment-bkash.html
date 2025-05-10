@@ -16,7 +16,7 @@
     </div>
 
     <div class="alert alert-info text-center">
-      <strong>bKash Personal Number:</strong> <br />
+      <strong>bKash Personal Number:</strong><br />
       📱 <strong>01920-539997</strong><br />
       <small>পেমেন্ট করার পরে নিচের ফর্মটি পূরণ করুন।</small>
     </div>
@@ -50,25 +50,30 @@
         return;
       }
 
-      // Get payment info
+      // Add payment info
       order.trx_id = document.getElementById('trxId').value;
       order.sender_number = document.getElementById('sender').value;
       order.note = document.getElementById('note').value;
       order.payment_confirmed = 'yes';
 
-      // Send to Google Sheet
+      // Submit to Google Sheet
       fetch(sheetURL, {
         method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams(order)
       })
-      .then(res => {
-        if (!res.ok) throw new Error('Submission failed');
-        localStorage.removeItem('pendingOrder');
-        alert('Payment information submitted successfully!');
-        window.location.href = 'thank-you.html';
+      .then(res => res.text())
+      .then(text => {
+        if (text.includes('Success')) {
+          localStorage.removeItem('pendingOrder');
+          alert('✅ Payment information submitted successfully!');
+          window.location.href = 'thank-you.html';
+        } else {
+          throw new Error(text);
+        }
       })
       .catch(err => {
-        alert('Error submitting payment. Try again.');
+        alert('❌ Error submitting payment. Please try again.');
         console.error(err);
       });
     });
