@@ -1,18 +1,77 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="bn">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>bKash Payment | Nachole Fruits Hub</title>
+  <title>বিকাশ পেমেন্ট | Nachole Fruits Hub</title>
+  <link rel="icon" href="favicon.png" type="image/png" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
-<body class="container my-5">
-  <h2 class="text-center mb-4">bKash Payment Instructions</h2>
-  <p>Please make your payment to the following bKash number:</p>
-  <ul>
-    <li><strong>Number:</strong> 01920-539997</li>
-    <li><strong>Account Type:</strong>Personal</li>
-  </ul>
-  <p>After completing the payment, please keep the transaction ID. We will contact you shortly to confirm your order.</p>
+<body class="bg-light">
+  <div class="container py-5">
+    <div class="text-center mb-4">
+      <img src="logo.png" alt="Logo" height="60" class="mb-2">
+      <h2 class="mb-2">বিকাশ পেমেন্ট</h2>
+      <p class="text-muted">অনুগ্রহ করে নিচের নম্বরে টাকা পাঠিয়ে আপনার ট্রানজেকশন তথ্য দিন।</p>
+    </div>
+
+    <div class="alert alert-info text-center">
+      <strong>bKash Personal Number:</strong> <br />
+      📱 <strong>01700-XXXXXX</strong><br />
+      <small>পেমেন্ট করার পরে নিচের ফর্মটি পূরণ করুন।</small>
+    </div>
+
+    <form id="paymentForm" class="bg-white p-4 rounded shadow">
+      <div class="mb-3">
+        <label for="trxId" class="form-label">Transaction ID *</label>
+        <input type="text" class="form-control" id="trxId" name="trx_id" required />
+      </div>
+      <div class="mb-3">
+        <label for="sender" class="form-label">Sender Number *</label>
+        <input type="tel" class="form-control" id="sender" name="sender_number" required />
+      </div>
+      <div class="mb-3">
+        <label for="note" class="form-label">Optional Note</label>
+        <textarea class="form-control" id="note" name="note" rows="2"></textarea>
+      </div>
+      <button type="submit" class="btn btn-success w-100">Submit Payment Info</button>
+    </form>
+  </div>
+
+  <script>
+    const sheetURL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+
+    document.getElementById('paymentForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const order = JSON.parse(localStorage.getItem('pendingOrder') || '{}');
+      if (!order.name || !order.phone) {
+        alert('Order information is missing.');
+        return;
+      }
+
+      // Get payment info
+      order.trx_id = document.getElementById('trxId').value;
+      order.sender_number = document.getElementById('sender').value;
+      order.note = document.getElementById('note').value;
+      order.payment_confirmed = 'yes';
+
+      // Send to Google Sheet
+      fetch(sheetURL, {
+        method: 'POST',
+        body: new URLSearchParams(order)
+      })
+      .then(res => {
+        if (!res.ok) throw new Error('Submission failed');
+        localStorage.removeItem('pendingOrder');
+        alert('Payment information submitted successfully!');
+        window.location.href = 'thank-you.html';
+      })
+      .catch(err => {
+        alert('Error submitting payment. Try again.');
+        console.error(err);
+      });
+    });
+  </script>
 </body>
 </html>
