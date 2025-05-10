@@ -41,17 +41,23 @@ function highlightActiveNav() {
 
 highlightActiveNav();
 
-document.getElementById('orderForm').addEventListener('submit', function (e) {
-  const payment = document.getElementById('payment').value;
-  if (payment !== 'cod') {
-    e.preventDefault();
-    let redirectUrl = '#';
-    if (payment === 'bkash') redirectUrl = 'payment-bkash.html';
-    else if (payment === 'nagad') redirectUrl = 'payment-nagad.html';
-    else if (payment === 'rocket') redirectUrl = 'payment-rocket.html';
-    else if (payment === 'bank') redirectUrl = 'payment-bank.html';
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('orderForm');
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      const payment = document.getElementById('payment').value;
+      if (payment !== 'cod') {
+        e.preventDefault();
+        let redirectUrl = '#';
+        if (payment === 'bkash') redirectUrl = 'payment-bkash.html';
+        else if (payment === 'nagad') redirectUrl = 'payment-nagad.html';
+        else if (payment === 'rocket') redirectUrl = 'payment-rocket.html';
+        else if (payment === 'bank') redirectUrl = 'payment-bank.html';
 
-    window.location.href = redirectUrl;
+        window.location.href = redirectUrl;
+      }
+    });
   }
 });
+
 
