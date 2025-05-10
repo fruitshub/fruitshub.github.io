@@ -61,3 +61,10 @@ header img {
     padding: 6px 10px;
   }
 }
+@media (max-width: 576px) {
+  .btn-group .btn-sm {
+    font-size: 0.75rem;
+    padding: 2px 6px;
+    line-height: 1.2;
+  }
+}
