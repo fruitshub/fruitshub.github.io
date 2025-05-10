@@ -1,6 +1,8 @@
-let currentLang = localStorage.getItem('lang') || 'en';
+// Set Bangla ('bn') as default if no language is stored
+let currentLang = localStorage.getItem('lang') || 'bn';
 setLanguage(currentLang);
 
+// Language toggle buttons
 document.getElementById('langEn').addEventListener('click', () => setLanguage('en'));
 document.getElementById('langBn').addEventListener('click', () => setLanguage('bn'));
 
@@ -24,7 +26,8 @@ function highlightActiveLangButton() {
   document.getElementById('langEn').classList.toggle('btn-light', currentLang !== 'en');
   document.getElementById('langBn').classList.toggle('btn-light', currentLang !== 'bn');
 }
-// Highlight active nav link
+
+// Highlight the active navigation link
 function highlightActiveNav() {
   const currentPage = location.pathname.split("/").pop();
   document.querySelectorAll('.nav-link').forEach(link => {
