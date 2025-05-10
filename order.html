@@ -9,100 +9,111 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
+  <!-- Header -->
   <header class="bg-success text-white">
-  <div class="container py-2">
-  <div class="row align-items-center">
-    <!-- Logo and title (left side) -->
-    <div class="col-8 d-flex align-items-center">
-      <img src="logo.png" alt="Nachole Fruits Hub Logo" height="50" class="me-2" />
-      <div>
-        <h1 class="h5 mb-0 lang" data-en="Nachole Fruits Hub" data-bn="নাচোল ফল হাব">নাচোল ফল হাব</h1>
-        <p class="mb-0 lang" data-en="Order fresh, juicy mangoes directly from Nachole!" data-bn="নাচোল থেকে সরাসরি তাজা, রসালো আম অর্ডার করুন!">
-          নাচোল থেকে সরাসরি তাজা, রসালো আম অর্ডার করুন!
-        </p>
+    <div class="container py-2">
+      <div class="row align-items-center">
+        <!-- Logo and title -->
+        <div class="col-8 d-flex align-items-center">
+          <img src="logo.png" alt="Nachole Fruits Hub Logo" height="50" class="me-2" />
+          <div>
+            <h1 class="h5 mb-0 lang" data-en="Nachole Fruits Hub" data-bn="নাচোল ফল হাব">নাচোল ফল হাব</h1>
+            <p class="mb-0 lang" data-en="Order fresh, juicy mangoes directly from Nachole!" data-bn="নাচোল থেকে সরাসরি তাজা, রসালো আম অর্ডার করুন!">নাচোল থেকে সরাসরি তাজা, রসালো আম অর্ডার করুন!</p>
+          </div>
+        </div>
+
+        <!-- Language toggle -->
+        <div class="col-4 text-end">
+          <div class="btn-group">
+            <button id="langEn" class="btn btn-light btn-sm">English</button>
+            <button id="langBn" class="btn btn-warning btn-sm">বাংলা</button>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- Language toggle (right side) -->
-    <div class="col-4 text-end">
-      <div class="btn-group">
-        <button id="langEn" class="btn btn-light btn-sm">English</button>
-        <button id="langBn" class="btn btn-warning btn-sm">বাংলা</button>
+    <!-- Marquee -->
+    <div class="overflow-hidden text-center">
+      <div class="marquee lang fw-bold text-orange"
+           data-en="Tree-ripened Gopalbhog, Khirsapat, Himsagar, Langra, Fazli from Nachole, Chapainawabganj — directly from orchard to your home. Trust and quality are our promise. Contact: 01743-127122"
+           data-bn="চাঁপাইনবাবগঞ্জ, নাচোলের গাছপাকা গোপালভোগ, ক্ষিরসাপাত, হিমসাগর, ল্যাংড়া, ফজলি — সরাসরি বাগান থেকে ঘরে। বিশ্বস্ততা ও গুণগত মান আমাদের অঙ্গীকার। যোগাযোগ: ০১৭৪৩-১২৭১২২">
+        চাঁপাইনবাবগঞ্জ, নাচোলের গাছপাকা গোপালভোগ, ক্ষিরসাপাত, হিমসাগর, ল্যাংড়া, ফজলি — সরাসরি বাগান থেকে ঘরে। বিশ্বস্ততা ও গুণগত মান আমাদের অঙ্গীকার। যোগাযোগ: ০১৭৪৩-১২৭১২২
       </div>
     </div>
-  </div>
-</div>
+  </header>
 
-  <!-- Scrolling notice -->
-  <div class="overflow-hidden text-center">
-    <div class="marquee lang fw-bold text-orange"
-         data-en="Tree-ripened Gopalbhog, Khirsapat, Himsagar, Langra, Fazli from Nachole, Chapainawabganj — directly from orchard to your home. Trust and quality are our promise. Contact: 01743-127122"
-         data-bn="চাঁপাইনবাবগঞ্জ, নাচোলের গাছপাকা গোপালভোগ, ক্ষিরসাপাত, হিমসাগর, ল্যাংড়া, ফজলি — সরাসরি বাগান থেকে ঘরে। বিশ্বস্ততা ও গুণগত মান আমাদের অঙ্গীকার। যোগাযোগ: ০১৭৪৩-১২৭১২২">
-      চাঁপাইনবাবগঞ্জ, নাচোলের গাছপাকা গোপালভোগ, ক্ষিরসাপাত, হিমসাগর, ল্যাংড়া, ফজলি — সরাসরি বাগান থেকে ঘরে। বিশ্বস্ততা ও গুণগত মান আমাদের অঙ্গীকার। যোগাযোগ: ০১৭৪৩-১২৭১২২
-    </div>
-  </div>
+  <!-- Navigation -->
+  <nav class="nav justify-content-center bg-success sticky-top shadow-sm">
+    <a class="nav-link text-white lang" data-en="Home" data-bn="হোম" href="index.html">হোম</a>
+    <a class="nav-link text-white lang" data-en="About" data-bn="পরিচিতি" href="about.html">পরিচিতি</a>
+    <a class="nav-link text-white lang" data-en="Contact" data-bn="যোগাযোগ" href="contact.html">যোগাযোগ</a>
+    <a class="nav-link text-white lang" data-en="Order" data-bn="অর্ডার" href="order.html">অর্ডার</a>
+  </nav>
 
-</header>
-  <!-- Navigation-->
-<nav class="nav justify-content-center bg-success sticky-top shadow-sm">
-  <a class="nav-link text-white lang" data-en="Home" data-bn="হোম" href="index.html">হোম</a>
-  <a class="nav-link text-white lang" data-en="About" data-bn="পরিচিতি" href="about.html">পরিচিতি</a>
-  <a class="nav-link text-white lang" data-en="Contact" data-bn="যোগাযোগ" href="contact.html">যোগাযোগ</a>
-  <a class="nav-link text-white lang" data-en="Order" data-bn="অর্ডার" href="order.html">অর্ডার</a>
-</nav>
-
+  <!-- Main content -->
   <main class="container mt-5 form-section">
-    <h2 class="mb-4 text-center lang" data-en="Place Your Order" data-bn="আপনার অর্ডার দিন">Place Your Order</h2>
+    <h2 class="mb-4 text-center lang" data-en="Place Your Order" data-bn="আপনার অর্ডার দিন">আপনার অর্ডার দিন</h2>
 
-    <p class="lang text-center mb-4" 
-   data-en="Please fill out the form below to place your mango order. You can choose your preferred mango type, quantity, and payment method. We offer Cash on Delivery, as well as bKash, Nagad, Rocket, and Bank Transfer options. Once submitted, our team will contact you to confirm delivery details."
-   data-bn="আপনার পছন্দের আমের প্রকার, পরিমাণ এবং পেমেন্ট পদ্ধতি নির্বাচন করে নিচের ফর্মটি পূরণ করুন। আমরা ক্যাশ অন ডেলিভারি ছাড়াও বিকাশ, নগদ, রকেট এবং ব্যাংক ট্রান্সফার পেমেন্ট সুবিধা দিচ্ছি। ফর্ম জমা দেওয়ার পর আমাদের টিম আপনাকে ডেলিভারি নিশ্চিত করতে ফোনে যোগাযোগ করবে।">
-  Please fill out the form below to place your mango order...
-</p>
-    
+    <p class="lang text-center mb-4"
+       data-en="Please fill out the form below to place your mango order. You can choose your preferred mango type, quantity, and payment method. We offer Cash on Delivery, as well as bKash, Nagad, Rocket, and Bank Transfer options. Once submitted, our team will contact you to confirm delivery details."
+       data-bn="আপনার পছন্দের আমের প্রকার, পরিমাণ এবং পেমেন্ট পদ্ধতি নির্বাচন করে নিচের ফর্মটি পূরণ করুন। আমরা ক্যাশ অন ডেলিভারি ছাড়াও বিকাশ, নগদ, রকেট এবং ব্যাংক ট্রান্সফার পেমেন্ট সুবিধা দিচ্ছি। ফর্ম জমা দেওয়ার পর আমাদের টিম আপনাকে ডেলিভারি নিশ্চিত করতে ফোনে যোগাযোগ করবে।">
+      আপনার পছন্দের আমের প্রকার, পরিমাণ এবং পেমেন্ট পদ্ধতি নির্বাচন করে নিচের ফর্মটি পূরণ করুন...
+    </p>
+
+    <!-- Order form -->
     <form id="orderForm" action="https://formspree.io/f/mqaqbjbe" method="POST">
       <div class="mb-3">
-        <label for="name" class="form-label lang" data-en="Full Name *" data-bn="পুরো নাম *">Full Name *</label>
+        <label for="name" class="form-label lang" data-en="Full Name *" data-bn="পুরো নাম *">পুরো নাম *</label>
         <input type="text" name="name" class="form-control" id="name" required />
       </div>
+
       <div class="mb-3">
-        <label for="phone" class="form-label lang" data-en="Phone Number *" data-bn="ফোন নম্বর *">Phone Number *</label>
+        <label for="phone" class="form-label lang" data-en="Phone Number *" data-bn="ফোন নম্বর *">ফোন নম্বর *</label>
         <input type="tel" name="phone" class="form-control" id="phone" required />
       </div>
+
       <div class="mb-3">
-        <label for="email" class="form-label lang" data-en="Email Address" data-bn="ইমেইল ঠিকানা">Email Address</label>
+        <label for="email" class="form-label lang" data-en="Email Address" data-bn="ইমেইল ঠিকানা">ইমেইল ঠিকানা</label>
         <input type="email" name="email" class="form-control" id="email" />
       </div>
+
       <div class="mb-3">
-        <label for="address" class="form-label lang" data-en="Delivery Address *" data-bn="ডেলিভারি ঠিকানা *">Delivery Address *</label>
+        <label for="address" class="form-label lang" data-en="Delivery Address *" data-bn="ডেলিভারি ঠিকানা *">ডেলিভারি ঠিকানা *</label>
         <textarea name="address" class="form-control" id="address" rows="3" required></textarea>
       </div>
+
       <div class="mb-3">
-        <label for="mangoType" class="form-label lang" data-en="Select Mango Type" data-bn="আমের ধরণ নির্বাচন করুন">Select Mango Type</label>
+        <label for="mangoType" class="form-label lang" data-en="Select Mango Type" data-bn="আমের ধরণ নির্বাচন করুন">আমের ধরণ নির্বাচন করুন</label>
         <select class="form-select" id="mangoType" name="mango_type" onchange="updatePrice()">
           <option value="Langra" data-price="100">Langra - ৳100/kg</option>
           <option value="Himsagar" data-price="120">Himsagar - ৳120/kg</option>
           <option value="Amrapali" data-price="130">Amrapali - ৳130/kg</option>
         </select>
       </div>
+
       <div class="mb-3">
-        <label class="form-label lang" data-en="Price per KG" data-bn="প্রতি কেজির দাম">Price per KG</label>
+        <label class="form-label lang" data-en="Price per KG" data-bn="প্রতি কেজির দাম">প্রতি কেজির দাম</label>
         <input type="text" class="form-control" id="pricePerKg" name="price_per_kg" value="100" readonly />
       </div>
+
       <div class="mb-3">
-        <label for="quantity" class="form-label lang" data-en="Quantity (KG, Min 5, Step 5)" data-bn="পরিমাণ (কেজি, ন্যূনতম ৫, ধাপে ৫)">Quantity (KG, Min 5, Step 5)</label>
+        <label for="quantity" class="form-label lang" data-en="Quantity (KG, Min 5, Step 5)" data-bn="পরিমাণ (কেজি, ন্যূনতম ৫, ধাপে ৫)">পরিমাণ (কেজি, ন্যূনতম ৫, ধাপে ৫)</label>
         <input type="number" name="quantity" id="quantity" class="form-control" min="5" step="5" value="5" required onchange="calculateTotal()" />
       </div>
+
       <div class="mb-3">
-        <label class="form-label lang" data-en="Total Price" data-bn="মোট মূল্য">Total Price</label>
+        <label class="form-label lang" data-en="Total Price" data-bn="মোট মূল্য">মোট মূল্য</label>
         <input type="text" class="form-control" id="totalPrice" name="total_price" readonly />
       </div>
+
       <div class="mb-3">
-        <label for="deliveryDate" class="form-label lang" data-en="Preferred Delivery Date" data-bn="পছন্দের ডেলিভারির তারিখ">Preferred Delivery Date</label>
+        <label for="deliveryDate" class="form-label lang" data-en="Preferred Delivery Date" data-bn="পছন্দের ডেলিভারির তারিখ">পছন্দের ডেলিভারির তারিখ</label>
         <input type="date" name="delivery_date" id="deliveryDate" class="form-control" required />
       </div>
+
       <div class="mb-3">
-        <label for="payment" class="form-label lang" data-en="Select Payment Method" data-bn="পেমেন্ট পদ্ধতি নির্বাচন করুন">Select Payment Method</label>
+        <label for="payment" class="form-label lang" data-en="Select Payment Method" data-bn="পেমেন্ট পদ্ধতি নির্বাচন করুন">পেমেন্ট পদ্ধতি নির্বাচন করুন</label>
         <select class="form-select" id="payment" name="payment_method" required>
           <option value="cod">Cash on Delivery</option>
           <option value="bkash">bKash</option>
@@ -111,21 +122,23 @@
           <option value="bank">Bank Transfer</option>
         </select>
       </div>
+
       <div class="mb-3">
-        <label for="comment" class="form-label lang" data-en="Additional Comments" data-bn="অতিরিক্ত মন্তব্য">Additional Comments</label>
+        <label for="comment" class="form-label lang" data-en="Additional Comments" data-bn="অতিরিক্ত মন্তব্য">অতিরিক্ত মন্তব্য</label>
         <textarea name="comment" class="form-control" id="comment" rows="3"></textarea>
       </div>
-      <button type="submit" class="btn btn-success w-100 lang mb-5" data-en="Submit Order" data-bn="অর্ডার জমা দিন">Submit Order</button>
+
+      <button type="submit" class="btn btn-success w-100 lang mb-5" data-en="Submit Order" data-bn="অর্ডার জমা দিন">অর্ডার জমা দিন</button>
     </form>
 
-    <p class="lang text-muted text-center" 
-   data-en="Note: Online payment links will redirect you to secure payment pages. For Cash on Delivery, no upfront payment is required."
-   data-bn="নোট: অনলাইন পেমেন্টের ক্ষেত্রে আপনাকে নিরাপদ পেমেন্ট পেইজে রিডাইরেক্ট করা হবে। ক্যাশ অন ডেলিভারির জন্য অগ্রিম কোনো পেমেন্ট প্রয়োজন নেই।">
-  Note: Online payment links will redirect you to secure payment pages...
-</p>
-    
+    <p class="lang text-muted text-center"
+       data-en="Note: Online payment links will redirect you to secure payment pages. For Cash on Delivery, no upfront payment is required."
+       data-bn="নোট: অনলাইন পেমেন্টের ক্ষেত্রে আপনাকে নিরাপদ পেমেন্ট পেইজে রিডাইরেক্ট করা হবে। ক্যাশ অন ডেলিভারির জন্য অগ্রিম কোনো পেমেন্ট প্রয়োজন নেই।">
+      নোট: অনলাইন পেমেন্টের ক্ষেত্রে আপনাকে নিরাপদ পেমেন্ট পেইজে রিডাইরেক্ট করা হবে...
+    </p>
   </main>
 
+  <!-- Scripts -->
   <script>
     function updatePrice() {
       const select = document.getElementById('mangoType');
@@ -142,22 +155,7 @@
     }
 
     calculateTotal();
-
-    document.getElementById('orderForm').addEventListener('submit', function (e) {
-      const payment = document.getElementById('payment').value;
-      if (payment !== 'cod') {
-        e.preventDefault(); // prevent default form submission
-        let redirectUrl = '#';
-        if (payment === 'bkash') redirectUrl = 'https://example.com/bkash-payment';
-        else if (payment === 'nagad') redirectUrl = 'https://example.com/nagad-payment';
-        else if (payment === 'rocket') redirectUrl = 'https://example.com/rocket-payment';
-        else if (payment === 'bank') redirectUrl = 'https://example.com/bank-payment';
-
-        window.location.href = redirectUrl;
-      }
-    });
   </script>
-
   <script src="script.js" defer></script>
 </body>
 </html>
