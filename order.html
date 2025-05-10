@@ -15,9 +15,7 @@
         <img src="logo.png" alt="Nachole Fruits Hub Logo" height="60" class="me-3" />
         <div>
           <h1 class="h4 mb-0 lang" data-en="Nachole Fruits Hub" data-bn="নাচোল ফল হাব">Nachole Fruits Hub</h1>
-          <p class="mb-0 lang" data-en="Order fresh, juicy mangoes directly from Nachole!" data-bn="নাচোল থেকে সরাসরি তাজা, রসালো আম অর্ডার করুন!">
-            Order fresh, juicy mangoes directly from Nachole!
-          </p>
+          <p class="mb-0 lang" data-en="Order fresh, juicy mangoes directly from Nachole!" data-bn="নাচোল থেকে সরাসরি তাজা, রসালো আম অর্ডার করুন!">Order fresh, juicy mangoes directly from Nachole!</p>
         </div>
       </div>
       <div class="btn-group" role="group">
@@ -25,14 +23,15 @@
         <button id="langBn" class="btn btn-warning btn-sm">বাংলা</button>
       </div>
     </div>
-    
+
     <div class="overflow-hidden text-center">
-  <div class="marquee lang fw-bold text-orange"
-       data-en="Tree-ripened Gopalbhog, Khirsapat, Himsagar, Langra, Fazli from Nachole, Chapainawabganj — directly from orchard to your home. Trust and quality are our promise. Contact: 01743-127122"
-       data-bn="চাঁপাইনবাবগঞ্জ, নাচোলের গাছপাকা গোপালভোগ, ক্ষিরসাপাত, হিমসাগর, ল্যাংড়া, ফজলি — সরাসরি বাগান থেকে ঘরে। বিশ্বস্ততা ও গুণগত মান আমাদের অঙ্গীকার। যোগাযোগ: ০১৭৪৩-১২৭১২২">
-    চাঁপাইনবাবগঞ্জ, নাচোলের গাছপাকা গোপালভোগ, ক্ষিরসাপাত, হিমসাগর, ল্যাংড়া, ফজলি — সরাসরি বাগান থেকে ঘরে। বিশ্বস্ততা ও গুণগত মান আমাদের অঙ্গীকার। যোগাযোগ: ০১৭৪৩-১২৭১২২
-  </div>
-</div>
+      <div class="marquee lang fw-bold text-orange"
+        data-en="Tree-ripened Gopalbhog, Khirsapat, Himsagar, Langra, Fazli from Nachole, Chapainawabganj — directly from orchard to your home. Trust and quality are our promise. Contact: 01743-127122"
+        data-bn="চাঁপাইনবাবগঞ্জ, নাচোলের গাছপাকা গোপালভোগ, ক্ষিরসাপাত, হিমসাগর, ল্যাংড়া, ফজলি — সরাসরি বাগান থেকে ঘরে। বিশ্বস্ততা ও গুণগত মান আমাদের অঙ্গীকার। যোগাযোগ: ০১৭৪৩-১২৭১২২">
+        চাঁপাইনবাবগঞ্জ, নাচোলের গাছপাকা গোপালভোগ, ক্ষিরসাপাত, হিমসাগর, ল্যাংড়া, ফজলি — সরাসরি বাগান থেকে ঘরে। বিশ্বস্ততা ও গুণগত মান আমাদের অঙ্গীকার। যোগাযোগ: ০১৭৪৩-১২৭১২২
+      </div>
+    </div>
+
     <nav class="nav justify-content-center bg-success">
       <a class="nav-link text-white lang" data-en="Home" data-bn="হোম" href="index.html">Home</a>
       <a class="nav-link text-white lang" data-en="About" data-bn="আমাদের সম্পর্কে" href="about.html">About</a>
@@ -44,7 +43,7 @@
   <main class="container mt-5 form-section">
     <h2 class="mb-4 text-center lang" data-en="Place Your Order" data-bn="আপনার অর্ডার দিন">Place Your Order</h2>
 
-    <form action="https://formspree.io/f/mqaqbjbe" method="POST">
+    <form id="orderForm" action="https://formspree.io/f/mqaqbjbe" method="POST">
       <div class="mb-3">
         <label for="name" class="form-label lang" data-en="Full Name *" data-bn="পুরো নাম *">Full Name *</label>
         <input type="text" name="name" class="form-control" id="name" required />
@@ -52,6 +51,10 @@
       <div class="mb-3">
         <label for="phone" class="form-label lang" data-en="Phone Number *" data-bn="ফোন নম্বর *">Phone Number *</label>
         <input type="tel" name="phone" class="form-control" id="phone" required />
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label lang" data-en="Email Address" data-bn="ইমেইল ঠিকানা">Email Address</label>
+        <input type="email" name="email" class="form-control" id="email" />
       </div>
       <div class="mb-3">
         <label for="address" class="form-label lang" data-en="Delivery Address *" data-bn="ডেলিভারি ঠিকানা *">Delivery Address *</label>
@@ -82,10 +85,20 @@
         <input type="date" name="delivery_date" id="deliveryDate" class="form-control" required />
       </div>
       <div class="mb-3">
+        <label for="payment" class="form-label lang" data-en="Select Payment Method" data-bn="পেমেন্ট পদ্ধতি নির্বাচন করুন">Select Payment Method</label>
+        <select class="form-select" id="payment" name="payment_method" required>
+          <option value="cod">Cash on Delivery</option>
+          <option value="bkash">bKash</option>
+          <option value="nagad">Nagad</option>
+          <option value="rocket">Rocket</option>
+          <option value="bank">Bank Transfer</option>
+        </select>
+      </div>
+      <div class="mb-3">
         <label for="comment" class="form-label lang" data-en="Additional Comments" data-bn="অতিরিক্ত মন্তব্য">Additional Comments</label>
         <textarea name="comment" class="form-control" id="comment" rows="3"></textarea>
       </div>
-      <button type="submit" class="btn btn-success w-100 lang" data-en="Submit Order" data-bn="অর্ডার জমা দিন">Submit Order</button>
+      <button type="submit" class="btn btn-success w-100 lang mb-5" data-en="Submit Order" data-bn="অর্ডার জমা দিন">Submit Order</button>
     </form>
   </main>
 
@@ -105,7 +118,22 @@
     }
 
     calculateTotal();
+
+    document.getElementById('orderForm').addEventListener('submit', function (e) {
+      const payment = document.getElementById('payment').value;
+      if (payment !== 'cod') {
+        e.preventDefault(); // prevent default form submission
+        let redirectUrl = '#';
+        if (payment === 'bkash') redirectUrl = 'https://example.com/bkash-payment';
+        else if (payment === 'nagad') redirectUrl = 'https://example.com/nagad-payment';
+        else if (payment === 'rocket') redirectUrl = 'https://example.com/rocket-payment';
+        else if (payment === 'bank') redirectUrl = 'https://example.com/bank-payment';
+
+        window.location.href = redirectUrl;
+      }
+    });
   </script>
+
   <script src="script.js" defer></script>
 </body>
 </html>
