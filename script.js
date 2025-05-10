@@ -46,28 +46,33 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!form) return;
 
   form.addEventListener('submit', function (e) {
+    const payment = document.getElementById('payment').value;
+
+    if (payment === 'cod') {
+      // Let the form submit directly to Google Sheets
+      return;
+    }
+
+    // Prevent default submission for online payment methods
     e.preventDefault();
 
     const formData = new FormData(form);
-    const payment = formData.get('payment_method');
-    const actionURL = form.getAttribute('action');
+    const orderData = {};
 
-    fetch(actionURL, {
-      method: 'POST',
-      body: formData,
-    })
-    .then(response => {
-      if (!response.ok) throw new Error('Submission failed');
-      if (payment === 'bkash') window.location.href = 'payment-bkash.html';
-      else if (payment === 'nagad') window.location.href = 'payment-nagad.html';
-      else if (payment === 'rocket') window.location.href = 'payment-rocket.html';
-      else if (payment === 'bank') window.location.href = 'payment-bank.html';
-      else window.location.href = 'thank-you.html'; // Optional for COD
-    })
-    .catch(error => {
-      alert("Error submitting order. Please try again.");
-      console.error(error);
+    formData.forEach((value, key) => {
+      orderData[key] = value;
     });
+
+    // Save to localStorage
+    localStorage.setItem('pendingOrder', JSON.stringify(orderData));
+
+    // Redirect to appropriate payment page
+    let redirectUrl = '#';
+    if (payment === 'bkash') redirectUrl = 'payment-bkash.html';
+    else if (payment === 'nagad') redirectUrl = 'payment-nagad.html';
+    else if (payment === 'rocket') redirectUrl = 'payment-rocket.html';
+    else if (payment === 'bank') redirectUrl = 'payment-bank.html';
+
+    window.location.href = redirectUrl;
   });
 });
-
