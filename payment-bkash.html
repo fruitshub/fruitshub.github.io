@@ -24,15 +24,15 @@
     <form id="paymentForm" class="bg-white p-4 rounded shadow">
       <div class="mb-3">
         <label for="trxId" class="form-label">Transaction ID *</label>
-        <input type="text" class="form-control" id="trxId" name="trx_id" required />
+        <input type="text" class="form-control" id="trxId" required />
       </div>
       <div class="mb-3">
         <label for="sender" class="form-label">Sender Number *</label>
-        <input type="tel" class="form-control" id="sender" name="sender_number" required />
+        <input type="tel" class="form-control" id="sender" required />
       </div>
       <div class="mb-3">
         <label for="note" class="form-label">Optional Note</label>
-        <textarea class="form-control" id="note" name="note" rows="2"></textarea>
+        <textarea class="form-control" id="note" rows="2"></textarea>
       </div>
       <button type="submit" class="btn btn-success w-100">Submit Payment Info</button>
     </form>
@@ -45,36 +45,40 @@
       e.preventDefault();
 
       const order = JSON.parse(localStorage.getItem('pendingOrder') || '{}');
+
       if (!order.name || !order.phone) {
-        alert('Order information is missing.');
+        alert('❌ Order information is missing.');
         return;
       }
 
       // Add payment info
-      order.trx_id = document.getElementById('trxId').value;
-      order.sender_number = document.getElementById('sender').value;
-      order.note = document.getElementById('note').value;
+      order.trx_id = document.getElementById('trxId').value.trim();
+      order.sender_number = document.getElementById('sender').value.trim();
+      order.note = document.getElementById('note').value.trim();
       order.payment_confirmed = 'yes';
 
-      // Submit to Google Sheet
+      // Send to Google Sheets
       fetch(sheetURL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
         body: new URLSearchParams(order)
       })
-      .then(res => res.text())
-      .then(text => {
-        if (text.includes('Success')) {
+      .then(response => response.text())
+      .then(result => {
+        console.log('Server response:', result);
+        if (result.includes('Success')) {
           localStorage.removeItem('pendingOrder');
           alert('✅ Payment information submitted successfully!');
           window.location.href = 'thank-you.html';
         } else {
-          throw new Error(text);
+          throw new Error(result);
         }
       })
-      .catch(err => {
+      .catch(error => {
         alert('❌ Error submitting payment. Please try again.');
-        console.error(err);
+        console.error('Fetch error:', error);
       });
     });
   </script>
