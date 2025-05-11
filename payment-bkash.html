@@ -1,85 +1,71 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>বিকাশ পেমেন্ট | Nachole Fruits Hub</title>
-  <link rel="icon" href="favicon.png" type="image/png" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <title>bKash Payment</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Include the bKash script provided by bKash -->
+  <script src="https://scripts.sandbox.bka.sh/checkout/pay/js/bKash-checkout.js"></script>
 </head>
-<body class="bg-light">
-  <div class="container py-5">
-    <div class="text-center mb-4">
-      <img src="logo.png" alt="Logo" height="60" class="mb-2">
-      <h2 class="mb-2">বিকাশ পেমেন্ট</h2>
-      <p class="text-muted">অনুগ্রহ করে নিচের নম্বরে টাকা পাঠিয়ে আপনার ট্রানজেকশন তথ্য দিন।</p>
-    </div>
-
-    <div class="alert alert-info text-center">
-      <strong>bKash Personal Number:</strong><br />
-      📱 <strong>01920-539997</strong><br />
-      <small>পেমেন্ট করার পরে নিচের ফর্মটি পূরণ করুন।</small>
-    </div>
-
-    <form id="paymentForm" class="bg-white p-4 rounded shadow">
-      <div class="mb-3">
-        <label for="trxId" class="form-label">Transaction ID *</label>
-        <input type="text" class="form-control" id="trxId" required />
-      </div>
-      <div class="mb-3">
-        <label for="sender" class="form-label">Sender Number *</label>
-        <input type="tel" class="form-control" id="sender" required />
-      </div>
-      <div class="mb-3">
-        <label for="note" class="form-label">Optional Note</label>
-        <textarea class="form-control" id="note" rows="2"></textarea>
-      </div>
-      <button type="submit" class="btn btn-success w-100">Submit Payment Info</button>
-    </form>
-  </div>
+<body>
+  <button id="bKash_button">Pay with bKash</button>
 
   <script>
-    const sheetURL = 'https://script.google.com/macros/s/AKfycbxKv6UlCca9dhTPi6Opx9W5mtguoLbwp2sB_Jn_hcVsLkUynil1uj0IciG8tGpMFlljbQ/exec';
-
-    document.getElementById('paymentForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      const order = JSON.parse(localStorage.getItem('pendingOrder') || '{}');
-
-      if (!order.name || !order.phone) {
-        alert('❌ Order information is missing.');
-        return;
-      }
-
-      // Add payment info
-      order.trx_id = document.getElementById('trxId').value.trim();
-      order.sender_number = document.getElementById('sender').value.trim();
-      order.note = document.getElementById('note').value.trim();
-      order.payment_confirmed = 'yes';
-
-      // Send to Google Sheets
-      fetch(sheetURL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
+    $(document).ready(function () {
+      // Initialize bKash payment
+      bKash.init({
+        paymentMode: 'checkout',
+        paymentRequest: {
+          amount: '85.50',
+          intent: 'sale',
+          currency: 'BDT',
+          merchantInvoiceNumber: '123456'
         },
-        body: new URLSearchParams(order)
-      })
-      .then(response => response.text())
-      .then(result => {
-        console.log('Server response:', result);
-        if (result.includes('Success')) {
-          localStorage.removeItem('pendingOrder');
-          alert('✅ Payment information submitted successfully!');
-          window.location.href = 'thank-you.html';
-        } else {
-          throw new Error(result);
+        createRequest: function (request) {
+          $.ajax({
+            url: 'https://script.google.com/macros/s/AKfycbxKv6UlCca9dhTPi6Opx9W5mtguoLbwp2sB_Jn_hcVsLkUynil1uj0IciG8tGpMFlljbQ/exec',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(request),
+            success: function (data) {
+              if (data && data.paymentID != null) {
+                bKash.create().onSuccess(data);
+              } else {
+                bKash.create().onError();
+                alert(data.errorMessage);
+              }
+            },
+            error: function () {
+              bKash.create().onError();
+              alert('An error occurred during createRequest.');
+            }
+          });
+        },
+        executeRequestOnAuthorization: function () {
+          $.ajax({
+            url: 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ paymentID: paymentID }),
+            success: function (data) {
+              if (data && data.paymentID != null) {
+                window.location.href = "/success_page.html";
+              } else {
+                bKash.execute().onError();
+                alert(data.errorMessage);
+              }
+            },
+            error: function () {
+              bKash.execute().onError();
+              alert('An error occurred during executeRequest.');
+            }
+          });
+        },
+        onClose: function () {
+          alert('User has clicked the close button');
         }
-      })
-      .catch(error => {
-        alert('❌ Error submitting payment. Please try again.');
-        console.error('Fetch error:', error);
       });
+
+      $('#bKash_button').removeAttr('disabled');
     });
   </script>
 </body>
