@@ -21,8 +21,8 @@
       <small>পেমেন্ট করার পরে নিচের ফর্মটি পূরণ করুন।</small>
     </div>
 
-    <form id="fullSubmitForm" action="https://script.google.com/macros/s/AKfycbxKv6UlCca9dhTPi6Opx9W5mtguoLbwp2sB_Jn_hcVsLkUynil1uj0IciG8tGpMFlljbQ/exec" method="POST">
-      <!-- Order Info from localStorage (injected by JS) -->
+    <form id="fullSubmitForm" action="https://script.google.com/macros/s/AKfycbxKv6UlCca9dhTPi6Opx9W5mtguoLbwp2sB_Jn_hcVsLkUynil1uj0IciG8tGpMFlljbQ/exec" method="POST" class="bg-white p-4 rounded shadow">
+      <!-- Hidden inputs for order info -->
       <input type="hidden" name="name" />
       <input type="hidden" name="phone" />
       <input type="hidden" name="email" />
@@ -35,21 +35,23 @@
       <input type="hidden" name="payment_method" />
       <input type="hidden" name="comment" />
       <input type="hidden" name="payment_confirmed" value="yes" />
+      <input type="hidden" name="trx_id" />
+      <input type="hidden" name="sender_number" />
+      <input type="hidden" name="note" />
 
-      <!-- Transaction Info -->
+      <!-- User inputs -->
       <div class="mb-3">
         <label for="trxId" class="form-label">Transaction ID *</label>
-        <input type="text" class="form-control" id="trxId" name="trx_id" required />
+        <input type="text" class="form-control" id="trxId" required />
       </div>
       <div class="mb-3">
         <label for="sender" class="form-label">Sender Number *</label>
-        <input type="tel" class="form-control" id="sender" name="sender_number" required />
+        <input type="tel" class="form-control" id="sender" required />
       </div>
       <div class="mb-3">
         <label for="note" class="form-label">Optional Note</label>
-        <textarea class="form-control" id="note" name="note" rows="2"></textarea>
+        <textarea class="form-control" id="note" rows="2"></textarea>
       </div>
-
       <button type="submit" class="btn btn-success w-100">Submit Payment Info</button>
     </form>
   </div>
@@ -57,6 +59,7 @@
   <script>
     const order = JSON.parse(localStorage.getItem('pendingOrder') || '{}');
     const form = document.getElementById('fullSubmitForm');
+
     const fields = [
       'name', 'phone', 'email', 'address', 'mango_type',
       'price_per_kg', 'quantity', 'total_price',
@@ -64,9 +67,14 @@
     ];
 
     fields.forEach(field => {
-      if (form[field]) {
-        form[field].value = order[field] || '';
-      }
+      if (form[field]) form[field].value = order[field] || '';
+    });
+
+    form.addEventListener('submit', function () {
+      form.querySelector('input[name="trx_id"]').value = document.getElementById('trxId').value.trim();
+      form.querySelector('input[name="sender_number"]').value = document.getElementById('sender').value.trim();
+      form.querySelector('input[name="note"]').value = document.getElementById('note').value.trim();
+      localStorage.removeItem('pendingOrder');
     });
   </script>
 </body>
