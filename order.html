@@ -1,4 +1,3 @@
-order.html
 <!DOCTYPE html>
 <html lang="bn">
 <head>
@@ -110,18 +109,7 @@ order.html
         <input type="date" name="delivery_date" id="deliveryDate" class="form-control" required />
       </div>
 
-      <div class="mb-3">
-        <label for="payment" class="form-label lang" data-en="Select Payment Method" data-bn="পেমেন্ট পদ্ধতি নির্বাচন করুন">পেমেন্ট পদ্ধতি নির্বাচন করুন</label>
-        <select class="form-select" id="payment" name="payment_method" required>
-          <option value="cod">Cash on Delivery</option>
-          <option value="bkash">bKash</option>
-          <option value="nagad">Nagad</option>
-          <option value="rocket">Rocket</option>
-          <option value="bank">Bank Transfer</option>
-        </select>
-      </div>
-
-      <div class="mb-3">
+        <div class="mb-3">
   <label for="payment" class="form-label lang" data-en="Select Payment Method" data-bn="পেমেন্ট পদ্ধতি নির্বাচন করুন">পেমেন্ট পদ্ধতি নির্বাচন করুন</label>
   <select class="form-select" id="payment" name="payment_method" required onchange="togglePaymentFields()">
     <option value="cod">Cash on Delivery</option>
