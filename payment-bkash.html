@@ -10,7 +10,7 @@
 <body class="bg-light">
   <div class="container py-5">
     <div class="text-center mb-4">
-      <img src="logo.png" alt="Logo" height="60" class="mb-2">
+      <img src="logo.png" alt="Logo" height="60" class="mb-2" />
       <h2 class="mb-2">বিকাশ পেমেন্ট</h2>
       <p class="text-muted">অনুগ্রহ করে নিচের নম্বরে টাকা পাঠিয়ে আপনার ট্রানজেকশন তথ্য দিন।</p>
     </div>
@@ -21,7 +21,22 @@
       <small>পেমেন্ট করার পরে নিচের ফর্মটি পূরণ করুন।</small>
     </div>
 
-    <form id="paymentForm" class="bg-white p-4 rounded shadow">
+    <form id="fullSubmitForm" action="https://script.google.com/macros/s/AKfycbxKv6UlCca9dhTPi6Opx9W5mtguoLbwp2sB_Jn_hcVsLkUynil1uj0IciG8tGpMFlljbQ/exec" method="POST">
+      <!-- Order Info from localStorage (injected by JS) -->
+      <input type="hidden" name="name" />
+      <input type="hidden" name="phone" />
+      <input type="hidden" name="email" />
+      <input type="hidden" name="address" />
+      <input type="hidden" name="mango_type" />
+      <input type="hidden" name="price_per_kg" />
+      <input type="hidden" name="quantity" />
+      <input type="hidden" name="total_price" />
+      <input type="hidden" name="delivery_date" />
+      <input type="hidden" name="payment_method" />
+      <input type="hidden" name="comment" />
+      <input type="hidden" name="payment_confirmed" value="yes" />
+
+      <!-- Transaction Info -->
       <div class="mb-3">
         <label for="trxId" class="form-label">Transaction ID *</label>
         <input type="text" class="form-control" id="trxId" name="trx_id" required />
@@ -34,53 +49,24 @@
         <label for="note" class="form-label">Optional Note</label>
         <textarea class="form-control" id="note" name="note" rows="2"></textarea>
       </div>
-      <button type="submit" class="btn btn-success w-100">Submit Payment Info</button>
-    </form>
 
-    <!-- Hidden form that posts to Google Sheet -->
-    <form id="finalSubmitForm" action="https://script.google.com/macros/s/AKfycbxKv6UlCca9dhTPi6Opx9W5mtguoLbwp2sB_Jn_hcVsLkUynil1uj0IciG8tGpMFlljbQ/exec" method="POST" style="display:none;">
-      <input type="hidden" name="name" />
-      <input type="hidden" name="phone" />
-      <input type="hidden" name="email" />
-      <input type="hidden" name="address" />
-      <input type="hidden" name="mango_type" />
-      <input type="hidden" name="price_per_kg" />
-      <input type="hidden" name="quantity" />
-      <input type="hidden" name="total_price" />
-      <input type="hidden" name="delivery_date" />
-      <input type="hidden" name="payment_method" />
-      <input type="hidden" name="comment" />
-      <input type="hidden" name="trx_id" />
-      <input type="hidden" name="sender_number" />
-      <input type="hidden" name="note" />
-      <input type="hidden" name="payment_confirmed" value="yes" />
+      <button type="submit" class="btn btn-success w-100">Submit Payment Info</button>
     </form>
   </div>
 
   <script>
-    document.getElementById('paymentForm').addEventListener('submit', function (e) {
-      e.preventDefault();
+    const order = JSON.parse(localStorage.getItem('pendingOrder') || '{}');
+    const form = document.getElementById('fullSubmitForm');
+    const fields = [
+      'name', 'phone', 'email', 'address', 'mango_type',
+      'price_per_kg', 'quantity', 'total_price',
+      'delivery_date', 'payment_method', 'comment'
+    ];
 
-      const order = JSON.parse(localStorage.getItem('pendingOrder') || '{}');
-      if (!order.name || !order.phone) {
-        alert('Order information is missing.');
-        return;
+    fields.forEach(field => {
+      if (form[field]) {
+        form[field].value = order[field] || '';
       }
-
-      order.trx_id = document.getElementById('trxId').value;
-      order.sender_number = document.getElementById('sender').value;
-      order.note = document.getElementById('note').value;
-      order.payment_confirmed = 'yes';
-
-      const finalForm = document.getElementById('finalSubmitForm');
-      for (const key in order) {
-        if (finalForm.elements[key]) {
-          finalForm.elements[key].value = order[key];
-        }
-      }
-
-      localStorage.removeItem('pendingOrder');
-      finalForm.submit();
     });
   </script>
 </body>
