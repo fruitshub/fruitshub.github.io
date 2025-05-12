@@ -2,206 +2,62 @@
 <html lang="bn">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Order | Nachole Fruits Hub</title>
-  <link rel="icon" href="favicon.png" type="image/png" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>আমের অর্ডার ফর্ম</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
 </head>
-<body>
+<body class="p-4 bg-light">
 
-  <!-- Header -->
-  <header class="bg-success text-white">
-    <div class="container py-2">
-      <div class="row align-items-center">
-        <div class="col-8 d-flex align-items-center">
-          <img src="logo.png" alt="Nachole Fruits Hub Logo" height="50" class="me-2" />
-          <div>
-            <h1 class="h5 mb-0 lang" data-en="Nachole Fruits Hub" data-bn="নাচোল ফল হাব">নাচোল ফল হাব</h1>
-            <p class="mb-0 lang" data-en="Order fresh, juicy mangoes directly from Nachole!" data-bn="নাচোল থেকে সরাসরি তাজা, রসালো আম অর্ডার করুন!">নাচোল থেকে সরাসরি তাজা, রসালো আম অর্ডার করুন!</p>
-          </div>
-        </div>
-        <div class="col-4 text-end">
-          <div class="btn-group">
-            <button id="langEn" class="btn btn-light btn-sm">English</button>
-            <button id="langBn" class="btn btn-warning btn-sm">বাংলা</button>
-          </div>
-        </div>
-      </div>
+  <!-- Language Toggle -->
+  <div class="mb-3">
+    <button id="langBn" class="btn btn-warning btn-sm">বাংলা</button>
+    <button id="langEn" class="btn btn-light btn-sm">English</button>
+  </div>
+
+  <h2 class="mb-4 lang" data-bn="আমের অর্ডার ফর্ম" data-en="Mango Order Form">আমের অর্ডার ফর্ম</h2>
+
+  <form id="orderForm" action="https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec" method="POST">
+
+    <!-- Customer Info -->
+    <input type="text" name="name" placeholder="নাম" required class="form-control mb-2">
+    <input type="text" name="phone" placeholder="মোবাইল নম্বর" required class="form-control mb-2">
+    <input type="text" name="address" placeholder="ঠিকানা" required class="form-control mb-3">
+
+    <!-- Mango Info -->
+    <select name="mango_variety" class="form-select mb-2" required>
+      <option value="">-- আমের জাত নির্বাচন করুন --</option>
+      <option value="হিমসাগর">হিমসাগর</option>
+      <option value="ল্যাংড়া">ল্যাংড়া</option>
+      <option value="ফজলি">ফজলি</option>
+      <option value="আম্রপালি">আম্রপালি</option>
+    </select>
+
+    <input type="number" name="quantity" id="quantity" placeholder="পরিমাণ (কেজি)" min="1" required class="form-control mb-2">
+    <input type="number" name="price_per_kg" id="pricePerKg" placeholder="প্রতি কেজির দাম (৳)" min="0" required class="form-control mb-2">
+    <input type="text" name="price" id="totalPrice" placeholder="মোট মূল্য (৳)" readonly class="form-control mb-3 bg-white">
+
+    <!-- Payment Method -->
+    <select name="payment_method" id="payment" class="form-select mb-3" required>
+      <option value="">-- পেমেন্ট পদ্ধতি নির্বাচন করুন --</option>
+      <option value="cod">ক্যাশ অন ডেলিভারি</option>
+      <option value="bkash">bKash</option>
+      <option value="nagad">Nagad</option>
+      <option value="rocket">Rocket</option>
+      <option value="bank">Bank</option>
+    </select>
+
+    <!-- Conditional Payment Fields -->
+    <div id="paymentFields" style="display: none;">
+      <input type="text" name="trx_id" id="trxId" class="form-control mb-2" placeholder="লেনদেন নম্বর (Trx ID)">
+      <input type="text" name="sender_number" id="senderNumber" class="form-control mb-2" placeholder="পাঠানো নম্বর">
+      <input type="text" name="note" id="note" class="form-control mb-3" placeholder="বিবরণ (যদি থাকে)">
     </div>
-    <div class="overflow-hidden text-center">
-      <div class="marquee lang fw-bold text-orange"
-        data-en="Tree-ripened Gopalbhog, Khirsapat, Himsagar, Langra, Fazli from Nachole, Chapainawabganj — directly from orchard to your home. Trust and quality are our promise. Contact: 01743-127122"
-        data-bn="চাঁপাইনবাবগঞ্জ, নাচোলের গাছপাকা গোপালভোগ, ক্ষিরসাপাত, হিমসাগর, ল্যাংড়া, ফজলি — সরাসরি বাগান থেকে ঘরে। বিশ্বস্ততা ও গুণগত মান আমাদের অঙ্গীকার। যোগাযোগ: ০১৭৪৩-১২৭১২২">
-        চাঁপাইনবাবগঞ্জ, নাচোলের গাছপাকা গোপালভোগ, ক্ষিরসাপাত, হিমসাগর, ল্যাংড়া, ফজলি — সরাসরি বাগান থেকে ঘরে। বিশ্বস্ততা ও গুণগত মান আমাদের অঙ্গীকার। যোগাযোগ: ০১৭৪৩-১২৭১২২
-      </div>
-    </div>
-  </header>
 
-  <!-- Navigation -->
-  <nav class="nav justify-content-center bg-success sticky-top shadow-sm">
-    <a class="nav-link text-white lang" data-en="Home" data-bn="হোম" href="index.html">হোম</a>
-    <a class="nav-link text-white lang" data-en="About" data-bn="পরিচিতি" href="about.html">পরিচিতি</a>
-    <a class="nav-link text-white lang" data-en="Contact" data-bn="যোগাযোগ" href="contact.html">যোগাযোগ</a>
-    <a class="nav-link text-white lang" data-en="Order" data-bn="অর্ডার" href="order.html">অর্ডার</a>
-  </nav>
+    <input type="hidden" name="payment_confirmed" id="paymentConfirmed" value="">
 
-  <!-- Main Content -->
-  <main class="container mt-5">
-    <h2 class="mb-4 text-center lang" data-en="Place Your Order" data-bn="আপনার অর্ডার দিন">আপনার অর্ডার দিন</h2>
+    <button type="submit" class="btn btn-success">অর্ডার করুন</button>
+  </form>
 
-    <form id="orderForm" method="POST" action="https://script.google.com/macros/s/AKfycbxKv6UlCca9dhTPi6Opx9W5mtguoLbwp2sB_Jn_hcVsLkUynil1uj0IciG8tGpMFlljbQ/exec">
-      <div class="row">
-        <div class="col-md-6 mb-3">
-          <label class="form-label lang" data-en="Full Name *" data-bn="পুরো নাম *">পুরো নাম *</label>
-          <input name="name" type="text" class="form-control" required />
-        </div>
-        <div class="col-md-6 mb-3">
-          <label class="form-label lang" data-en="Phone Number *" data-bn="ফোন নম্বর *">ফোন নম্বর *</label>
-          <input name="phone" type="tel" class="form-control" required />
-        </div>
-      </div>
-
-      <div class="mb-3">
-        <label class="form-label lang" data-en="Email Address" data-bn="ইমেইল ঠিকানা">ইমেইল ঠিকানা</label>
-        <input name="email" type="email" class="form-control" />
-      </div>
-
-      <div class="mb-3">
-        <label class="form-label lang" data-en="Delivery Address *" data-bn="ডেলিভারি ঠিকানা *">ডেলিভারি ঠিকানা *</label>
-        <textarea name="address" class="form-control" rows="2" required></textarea>
-      </div>
-
-      <div class="row">
-        <div class="col-md-6 mb-3">
-          <label class="form-label lang" data-en="Select Mango Type" data-bn="আমের ধরণ">আমের ধরণ</label>
-          <select class="form-select" name="mango_type" id="mangoType" onchange="updatePrice()">
-            <option value="Langra" data-price="100">Langra - ৳100/kg</option>
-            <option value="Himsagar" data-price="120">Himsagar - ৳120/kg</option>
-            <option value="Amrapali" data-price="130">Amrapali - ৳130/kg</option>
-          </select>
-        </div>
-        <div class="col-md-6 mb-3">
-          <label class="form-label lang" data-en="Price per KG" data-bn="প্রতি কেজির দাম">প্রতি কেজির দাম</label>
-          <input type="text" name="price_per_kg" id="pricePerKg" class="form-control" value="100" readonly />
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-6 mb-3">
-          <label class="form-label lang" data-en="Quantity (KG)" data-bn="পরিমাণ (কেজি)">পরিমাণ (কেজি)</label>
-          <input name="quantity" type="number" class="form-control" id="quantity" value="5" min="5" step="5" required onchange="calculateTotal()" />
-        </div>
-        <div class="col-md-6 mb-3">
-          <label class="form-label lang" data-en="Total Price" data-bn="মোট মূল্য">মোট মূল্য</label>
-          <input name="total_price" type="text" class="form-control" id="totalPrice" readonly />
-        </div>
-      </div>
-
-      <div class="mb-3">
-        <label class="form-label lang" data-en="Preferred Delivery Date" data-bn="পছন্দের ডেলিভারির তারিখ">পছন্দের ডেলিভারির তারিখ</label>
-        <input name="delivery_date" type="date" class="form-control" required />
-      </div>
-
-      <div class="mb-3">
-        <label class="form-label lang" data-en="Select Payment Method" data-bn="পেমেন্ট পদ্ধতি">পেমেন্ট পদ্ধতি</label>
-        <select class="form-select" name="payment_method" id="payment" required onchange="togglePaymentFields()">
-          <option value="cod">Cash on Delivery</option>
-          <option value="bkash">bKash</option>
-          <option value="nagad">Nagad</option>
-          <option value="rocket">Rocket</option>
-          <option value="bank">Bank Transfer</option>
-        </select>
-      </div>
-
-      <div id="paymentInstruction" class="alert alert-info d-none"></div>
-
-      <div id="paymentFields" class="d-none">
-        <div class="row">
-          <div class="col-md-6 mb-3">
-            <label class="form-label lang" data-en="Transaction ID *" data-bn="লেনদেন নম্বর *">লেনদেন নম্বর *</label>
-            <input name="trx_id" id="trxId" class="form-control" />
-          </div>
-          <div class="col-md-6 mb-3">
-            <label class="form-label lang" data-en="Sender Number *" data-bn="প্রেরক নম্বর *">প্রেরক নম্বর *</label>
-            <input name="sender_number" id="senderNumber" class="form-control" />
-          </div>
-        </div>
-      </div>
-
-      <input type="hidden" name="note" value="" />
-      <input type="hidden" name="payment_confirmed" id="paymentConfirmed" />
-
-      <div class="mb-3">
-        <label class="form-label lang" data-en="Additional Comments" data-bn="অতিরিক্ত মন্তব্য">অতিরিক্ত মন্তব্য</label>
-        <textarea name="comment" class="form-control" rows="2"></textarea>
-      </div>
-
-      <button type="submit" class="btn btn-success w-100 lang mb-5" data-en="Submit Order" data-bn="অর্ডার জমা দিন">অর্ডার জমা দিন</button>
-    </form>
-  </main>
-
-  <!-- JavaScript -->
-  <script>
-    function updatePrice() {
-      const select = document.getElementById('mangoType');
-      const selected = select.options[select.selectedIndex];
-      const price = selected.getAttribute('data-price');
-      document.getElementById('pricePerKg').value = price;
-      calculateTotal();
-    }
-
-    function calculateTotal() {
-      const price = parseInt(document.getElementById('pricePerKg').value);
-      const qty = parseInt(document.getElementById('quantity').value);
-      document.getElementById('totalPrice').value = price * qty;
-    }
-
-    function togglePaymentFields() {
-      const method = document.getElementById('payment').value;
-      const instruction = document.getElementById('paymentInstruction');
-      const extraFields = document.getElementById('paymentFields');
-      const trxId = document.getElementById('trxId');
-      const senderNumber = document.getElementById('senderNumber');
-      const paymentConfirmed = document.getElementById('paymentConfirmed');
-
-      const paymentTexts = {
-        bkash: `Send money to bKash: <strong>01920-539997</strong>`,
-        nagad: `Send money to Nagad: <strong>01743-127122</strong>`,
-        rocket: `Send money to Rocket: <strong>01743-127122</strong>`,
-        bank: `Bank: Dutch Bangla Bank<br>A/C: 1791030100041<br>Name: Md. Moshiur Rahman<br>Routing: 090331639`
-      };
-
-      if (method === 'cod') {
-        instruction.classList.add('d-none');
-        extraFields.classList.add('d-none');
-        trxId.required = false;
-        senderNumber.required = false;
-        paymentConfirmed.value = 'Not Required';
-      } else {
-        instruction.innerHTML = paymentTexts[method] || '';
-        instruction.classList.remove('d-none');
-        extraFields.classList.remove('d-none');
-        trxId.required = true;
-        senderNumber.required = true;
-        paymentConfirmed.value = 'Confirmed';
-      }
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      updatePrice();
-      calculateTotal();
-      togglePaymentFields();
-
-      // Language Toggle
-      const updateLanguage = (lang) => {
-        document.querySelectorAll('.lang').forEach(el => {
-          el.textContent = el.dataset[lang];
-        });
-      };
-      document.getElementById('langEn').addEventListener('click', () => updateLanguage('en'));
-      document.getElementById('langBn').addEventListener('click', () => updateLanguage('bn'));
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
