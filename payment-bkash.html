@@ -36,11 +36,28 @@
       </div>
       <button type="submit" class="btn btn-success w-100">Submit Payment Info</button>
     </form>
+
+    <!-- Hidden form that posts to Google Sheet -->
+    <form id="finalSubmitForm" action="https://script.google.com/macros/s/AKfycbxKv6UlCca9dhTPi6Opx9W5mtguoLbwp2sB_Jn_hcVsLkUynil1uj0IciG8tGpMFlljbQ/exec" method="POST" style="display:none;">
+      <input type="hidden" name="name" />
+      <input type="hidden" name="phone" />
+      <input type="hidden" name="email" />
+      <input type="hidden" name="address" />
+      <input type="hidden" name="mango_type" />
+      <input type="hidden" name="price_per_kg" />
+      <input type="hidden" name="quantity" />
+      <input type="hidden" name="total_price" />
+      <input type="hidden" name="delivery_date" />
+      <input type="hidden" name="payment_method" />
+      <input type="hidden" name="comment" />
+      <input type="hidden" name="trx_id" />
+      <input type="hidden" name="sender_number" />
+      <input type="hidden" name="note" />
+      <input type="hidden" name="payment_confirmed" value="yes" />
+    </form>
   </div>
 
   <script>
-    const sheetURL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec'; // Replace with your live script URL
-
     document.getElementById('paymentForm').addEventListener('submit', function (e) {
       e.preventDefault();
 
@@ -50,32 +67,20 @@
         return;
       }
 
-      // Add payment info
       order.trx_id = document.getElementById('trxId').value;
       order.sender_number = document.getElementById('sender').value;
       order.note = document.getElementById('note').value;
       order.payment_confirmed = 'yes';
 
-      // Submit to Google Sheet
-      fetch(sheetURL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(order)
-      })
-      .then(res => res.text())
-      .then(text => {
-        if (text.includes('Success')) {
-          localStorage.removeItem('pendingOrder');
-          alert('✅ Payment information submitted successfully!');
-          window.location.href = 'thank-you.html';
-        } else {
-          throw new Error(text);
+      const finalForm = document.getElementById('finalSubmitForm');
+      for (const key in order) {
+        if (finalForm.elements[key]) {
+          finalForm.elements[key].value = order[key];
         }
-      })
-      .catch(err => {
-        alert('❌ Error submitting payment. Please try again.');
-        console.error(err);
-      });
+      }
+
+      localStorage.removeItem('pendingOrder');
+      finalForm.submit();
     });
   </script>
 </body>
