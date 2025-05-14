@@ -110,15 +110,30 @@
       </div>
 
       <div class="mb-3">
-        <label for="payment" class="form-label lang" data-en="Select Payment Method" data-bn="পেমেন্ট পদ্ধতি নির্বাচন করুন">পেমেন্ট পদ্ধতি নির্বাচন করুন</label>
-        <select class="form-select" id="payment" name="payment_method" required>
-          <option value="cod">Cash on Delivery</option>
-          <option value="bkash">bKash</option>
-          <option value="nagad">Nagad</option>
-          <option value="rocket">Rocket</option>
-          <option value="bank">Bank Transfer</option>
-        </select>
-      </div>
+  <label for="payment" class="form-label lang" data-en="Select Payment Method" data-bn="পেমেন্ট পদ্ধতি নির্বাচন করুন">পেমেন্ট পদ্ধতি নির্বাচন করুন</label>
+  <select class="form-select" id="payment" name="payment_method" required onchange="togglePaymentFields()">
+    <option value="cod">Cash on Delivery</option>
+    <option value="bkash">bKash</option>
+    <option value="nagad">Nagad</option>
+    <option value="rocket">Rocket</option>
+    <option value="bank">Bank Transfer</option>
+  </select>
+</div>
+
+<!-- Payment Instruction & Extra Fields -->
+<div id="paymentInstruction" class="alert alert-info d-none"></div>
+
+<div id="paymentFields" class="d-none">
+  <div class="mb-3">
+    <label for="trxId" class="form-label lang" data-en="Transaction ID *" data-bn="লেনদেন নম্বর *">লেনদেন নম্বর *</label>
+    <input type="text" class="form-control" id="trxId" name="trx_id" />
+  </div>
+  <div class="mb-3">
+    <label for="senderNumber" class="form-label lang" data-en="Sender Number *" data-bn="প্রেরক নম্বর *">প্রেরক নম্বর *</label>
+    <input type="tel" class="form-control" id="senderNumber" name="sender_number" />
+  </div>
+</div>
+      
 
       <div class="mb-3">
         <label for="comment" class="form-label lang" data-en="Additional Comments" data-bn="অতিরিক্ত মন্তব্য">অতিরিক্ত মন্তব্য</label>
@@ -149,5 +164,36 @@
   </script>
 
   <script src="script.js" defer></script>
+
+  <script>
+  function togglePaymentFields() {
+    const method = document.getElementById('payment').value;
+    const instruction = document.getElementById('paymentInstruction');
+    const extraFields = document.getElementById('paymentFields');
+
+    const paymentTexts = {
+      bkash: `Send Money to bKash Personal Number:<br><strong>📱 01920-539997</strong><br>পেমেন্ট করার পরে নিচের ফর্মটি পূরণ করুন।`,
+      nagad: `Send Money to Nagad Number:<br><strong>📱 01743-127122</strong><br>পেমেন্ট করার পরে নিচের ফর্মটি পূরণ করুন।`,
+      rocket: `Send Money to Rocket Number:<br><strong>📱 01743-127122</strong><br>পেমেন্ট করার পরে নিচের ফর্মটি পূরণ করুন।`,
+      bank: `Bank Transfer to:<br><strong>Bank:</strong> Dutch Bangla Bank Ltd.<br><strong>A/C No:</strong> 1791030100041<br><strong>Name:</strong> Md. Moshiur Rahman<br><strong>Routing:</strong> 090331639<br>পেমেন্ট করার পরে নিচের ফর্মটি পূরণ করুন।`
+    };
+
+    if (method === 'cod') {
+      instruction.classList.add('d-none');
+      extraFields.classList.add('d-none');
+      document.getElementById('trxId').required = false;
+      document.getElementById('senderNumber').required = false;
+    } else {
+      instruction.classList.remove('d-none');
+      extraFields.classList.remove('d-none');
+      instruction.innerHTML = paymentTexts[method] || '';
+      document.getElementById('trxId').required = true;
+      document.getElementById('senderNumber').required = true;
+    }
+  }
+
+  // Run on page load in case form is pre-filled
+  document.addEventListener('DOMContentLoaded', togglePaymentFields);
+</script>
 </body>
 </html>
