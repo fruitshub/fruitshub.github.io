@@ -58,242 +58,127 @@
       আপনার পছন্দের আম, পরিমাণ ও পেমেন্ট পদ্ধতি বেছে নিয়ে নিচের ফর্মটি পূরণ করুন...
     </p>
 
-    <!-- Order Form -->
-     <form id="orderForm" action="https://script.google.com/macros/s/AKfycbxKv6UlCca9dhTPi6Opx9W5mtguoLbwp2sB_Jn_hcVsLkUynil1uj0IciG8tGpMFlljbQ/exec" method="POST">
-    <div class="mb-3">
-      <label for="name" id="labelName" class="form-label">পুরো নাম *</label>
-      <input type="text" name="name" class="form-control" id="name" required />
+<body>
+  <h1>Mango Order Form</h1>
+  <form id="orderForm">
+
+    <label for="name">Name *</label>
+    <input type="text" id="name" required>
+
+    <label for="phone">Phone *</label>
+    <input type="tel" id="phone" required>
+
+    <label for="email">Email (Optional)</label>
+    <input type="email" id="email">
+
+    <label for="address">Address *</label>
+    <textarea id="address" required></textarea>
+
+    <label for="mangoType">Mango Type *</label>
+    <select id="mangoType" required>
+      <option value="">-- Select Mango Type --</option>
+      <option value="Langra">Langra</option>
+      <option value="Himsagar">Himsagar</option>
+      <option value="Fazli">Fazli</option>
+      <option value="Amrapali">Amrapali</option>
+    </select>
+
+    <label for="pricePerKg">Price per kg (৳)</label>
+    <input type="number" id="pricePerKg" readonly>
+
+    <label for="quantity">Quantity (kg) *</label>
+    <div>
+      <input type="number" id="quantity" min="5" step="1" value="5" required>
+      <button type="button" onclick="adjustQuantity(5)">+5</button>
+      <button type="button" onclick="adjustQuantity(-5)">-5</button>
     </div>
 
-    <div class="mb-3">
-      <label for="phone" id="labelPhone" class="form-label">ফোন নম্বর *</label>
-      <input type="tel" name="phone" class="form-control" id="phone" required />
+    <label for="totalPrice">Total Price (৳)</label>
+    <input type="number" id="totalPrice" readonly>
+
+    <label for="deliveryDate">Expected Delivery Date *</label>
+    <input type="date" id="deliveryDate" required>
+
+    <label for="paymentMethod">Payment Method *</label>
+    <select id="paymentMethod" required>
+      <option value="">-- Select Payment Method --</option>
+      <option value="COD">Cash on Delivery</option>
+      <option value="Bkash">Bkash</option>
+      <option value="Nagad">Nagad</option>
+      <option value="Rocket">Rocket</option>
+      <option value="Bank">Bank Transfer</option>
+    </select>
+
+    <div id="paymentInstructions" class="hidden">
+      <p><strong>Payment Instructions:</strong> Send money to the displayed number and enter your details below.</p>
+
+      <label for="transactionId">Transaction ID *</label>
+      <input type="text" id="transactionId">
+
+      <label for="accountNumber">Account Number *</label>
+      <input type="text" id="accountNumber">
     </div>
 
-    <div class="mb-3">
-      <label for="email" id="labelEmail" class="form-label">ইমেইল</label>
-      <input type="email" name="email" class="form-control" id="email" />
-    </div>
+    <label for="comment">Comment</label>
+    <textarea id="comment"></textarea>
 
-    <div class="mb-3">
-      <label for="address" id="labelAddress" class="form-label">ঠিকানা *</label>
-      <textarea name="address" class="form-control" id="address" required></textarea>
-    </div>
-
-    <div class="mb-3">
-      <label for="mangoType" id="labelMango" class="form-label">আমের ধরণ</label>
-      <select class="form-select" id="mangoType" name="mango_type" onchange="updatePrice()">
-        <option value="Langra" data-price="100">Langra - ৳100/kg</option>
-        <option value="Himsagar" data-price="120">Himsagar - ৳120/kg</option>
-        <option value="Amrapali" data-price="130">Amrapali - ৳130/kg</option>
-      </select>
-    </div>
-
-    <div class="mb-3">
-      <label id="labelPrice" class="form-label">প্রতি কেজির দাম</label>
-      <input type="text" class="form-control" id="pricePerKg" name="price_per_kg" readonly />
-    </div>
-
-    <div class="mb-3">
-      <label for="quantity" id="labelQty" class="form-label">পরিমাণ (কেজি)</label>
-      <input type="number" name="quantity" id="quantity" class="form-control" min="5" step="5" required onchange="calculateTotal()" />
-    </div>
-
-    <div class="mb-3">
-      <label id="labelTotal" class="form-label">মোট মূল্য</label>
-      <input type="text" class="form-control" id="totalPrice" name="total_price" readonly />
-    </div>
-
-    <div class="mb-3">
-      <label for="deliveryDate" id="labelDate" class="form-label">ডেলিভারির তারিখ</label>
-      <input type="date" name="delivery_date" id="deliveryDate" class="form-control" required />
-    </div>
-
-    <div class="mb-3">
-      <label for="payment" id="labelPayment" class="form-label">পেমেন্ট পদ্ধতি</label>
-      <select class="form-select" id="payment" name="payment_method" required onchange="togglePaymentFields()">
-        <option value="cod">Cash on Delivery</option>
-        <option value="bkash">bKash</option>
-        <option value="nagad">Nagad</option>
-        <option value="rocket">Rocket</option>
-        <option value="bank">Bank Transfer</option>
-      </select>
-    </div>
-
-    <div id="paymentInstruction" class="alert alert-info d-none"></div>
-
-    <div class="mb-3">
-        <label for="trxId" id="labelTrx" class="form-label">লেনদেন নম্বর *</label>
-        <input type="text" class="form-control" id="trxId" name="trx_id" />
-      </div>
-      <div class="mb-3">
-        <label for="senderNumber" id="labelSender" class="form-label">প্রেরক নম্বর *</label>
-        <input type="tel" class="form-control" id="senderNumber" name="sender_number" />
-      </div>
-
-    <!--<div id="paymentFields" class="d-none">
-      <div class="mb-3">
-        <label for="trxId" id="labelTrx" class="form-label">লেনদেন নম্বর *</label>
-        <input type="text" class="form-control" id="trxId" name="trx_id" />
-      </div>
-      <div class="mb-3">
-        <label for="senderNumber" id="labelSender" class="form-label">প্রেরক নম্বর *</label>
-        <input type="tel" class="form-control" id="senderNumber" name="sender_number" />
-      </div>
-    </div>-->
-
-    <div class="mb-3">
-      <label for="comment" id="labelComment" class="form-label">মন্তব্য</label>
-      <textarea name="comment" class="form-control" id="comment" rows="2"></textarea>
-    </div>
-
-    <button type="submit" id="submitBtn" class="btn btn-success w-100">অর্ডার করুন</button>
+    <button type="submit">Submit Order</button>
   </form>
-  </main>
-
-  <!-- Price Calculation Script -->
-  <script>
-    function updatePrice() {
-      const select = document.getElementById('mangoType');
-      const selectedOption = select.options[select.selectedIndex];
-      const price = selectedOption.getAttribute('data-price');
-      document.getElementById('pricePerKg').value = price;
-      calculateTotal();
-    }
-
-    function calculateTotal() {
-      const price = parseInt(document.getElementById('pricePerKg').value);
-      const qty = parseInt(document.getElementById('quantity').value);
-      document.getElementById('totalPrice').value = price * qty;
-    }
-
-    calculateTotal();
-    
-  </script>
-
-  <script src="script.js" defer></script>
 
   <script>
-  function togglePaymentFields() {
-    const method = document.getElementById('payment').value;
-    const instruction = document.getElementById('paymentInstruction');
-    const extraFields = document.getElementById('paymentFields');
-
-    const paymentTexts = {
-      bkash: `Send Money to bKash Personal Number:<br><strong>📱 01920-539997</strong><br>পেমেন্ট করার পরে নিচের ফর্মটি পূরণ করুন।`,
-      nagad: `Send Money to Nagad Number:<br><strong>📱 01743-127122</strong><br>পেমেন্ট করার পরে নিচের ফর্মটি পূরণ করুন।`,
-      rocket: `Send Money to Rocket Number:<br><strong>📱 01743-127122</strong><br>পেমেন্ট করার পরে নিচের ফর্মটি পূরণ করুন।`,
-      bank: `Bank Transfer to:<br><strong>Bank:</strong> Dutch Bangla Bank Ltd.<br><strong>A/C No:</strong> 1791030100041<br><strong>Name:</strong> Md. Moshiur Rahman<br><strong>Routing:</strong> 090331639<br>পেমেন্ট করার পরে নিচের ফর্মটি পূরণ করুন।`
+    const mangoPrices = {
+      "Langra": 100,
+      "Himsagar": 120,
+      "Fazli": 90,
+      "Amrapali": 110
     };
 
-    if (method === 'cod') {
-      instruction.classList.add('d-none');
-      extraFields.classList.add('d-none');
-      document.getElementById('trxId').required = false;
-      document.getElementById('senderNumber').required = false;
-    } else {
-      instruction.classList.remove('d-none');
-      extraFields.classList.remove('d-none');
-      instruction.innerHTML = paymentTexts[method] || '';
-      document.getElementById('trxId').required = true;
-      document.getElementById('senderNumber').required = true;
-    }
-  }
+    const mangoTypeSelect = document.getElementById('mangoType');
+    const pricePerKgInput = document.getElementById('pricePerKg');
+    const quantityInput = document.getElementById('quantity');
+    const totalPriceInput = document.getElementById('totalPrice');
+    const paymentMethodSelect = document.getElementById('paymentMethod');
+    const paymentInstructions = document.getElementById('paymentInstructions');
+    const transactionIdInput = document.getElementById('transactionId');
+    const accountNumberInput = document.getElementById('accountNumber');
 
-  // Run on page load in case form is pre-filled
-  document.addEventListener('DOMContentLoaded', togglePaymentFields);
-
-    function updatePrice() {
-      const select = document.getElementById('mangoType');
-      const price = select.options[select.selectedIndex].getAttribute('data-price');
-      document.getElementById('pricePerKg').value = price;
-      calculateTotal();
-    }
-
-    function calculateTotal() {
-      const price = parseInt(document.getElementById('pricePerKg').value || 0);
-      const qty = parseInt(document.getElementById('quantity').value || 0);
-      document.getElementById('totalPrice').value = price * qty;
-    }
-
-    function togglePaymentFields() {
-      const method = document.getElementById('payment').value;
-      const instruction = document.getElementById('paymentInstruction');
-      const extraFields = document.getElementById('paymentFields');
-
-      const info = {
-        bkash: "Send to bKash: 01920-539997",
-        nagad: "Send to Nagad: 01743-127122",
-        rocket: "Send to Rocket: 01743-127122",
-        bank: "Transfer to DBBL: 1791030100041 (Md. Moshiur Rahman)"
-      };
-
-      if (method === 'cod') {
-        instruction.classList.add('d-none');
-        extraFields.classList.add('d-none');
-        document.getElementById('trxId').required = false;
-        document.getElementById('senderNumber').required = false;
-      } else {
-        instruction.innerHTML = info[method];
-        instruction.classList.remove('d-none');
-        extraFields.classList.remove('d-none');
-        document.getElementById('trxId').required = true;
-        document.getElementById('senderNumber').required = true;
-      }
-    }
-
-    let lang = 'bn';
-    function toggleLanguage() {
-      const bn = {
-        formTitle: "অর্ডার ফর্ম",
-        labelName: "পুরো নাম *",
-        labelPhone: "ফোন নম্বর *",
-        labelEmail: "ইমেইল",
-        labelAddress: "ঠিকানা *",
-        labelMango: "আমের ধরণ",
-        labelPrice: "প্রতি কেজির দাম",
-        labelQty: "পরিমাণ (কেজি)",
-        labelTotal: "মোট মূল্য",
-        labelDate: "ডেলিভারির তারিখ",
-        labelPayment: "পেমেন্ট পদ্ধতি",
-        labelTrx: "লেনদেন নম্বর *",
-        labelSender: "প্রেরক নম্বর *",
-        labelComment: "মন্তব্য",
-        submitBtn: "অর্ডার করুন"
-      };
-
-      const en = {
-        formTitle: "Order Form",
-        labelName: "Full Name *",
-        labelPhone: "Phone Number *",
-        labelEmail: "Email",
-        labelAddress: "Delivery Address *",
-        labelMango: "Mango Type",
-        labelPrice: "Price per kg",
-        labelQty: "Quantity (kg)",
-        labelTotal: "Total Price",
-        labelDate: "Preferred Delivery Date",
-        labelPayment: "Payment Method",
-        labelTrx: "Transaction ID *",
-        labelSender: "Sender Number *",
-        labelComment: "Additional Notes",
-        submitBtn: "Submit Order"
-      };
-
-      const t = lang === 'bn' ? en : bn;
-      for (const id in t) {
-        const el = document.getElementById(id);
-        if (el) el.innerHTML = t[id];
-      }
-      lang = lang === 'bn' ? 'en' : 'bn';
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      updatePrice();
-      togglePaymentFields();
+    mangoTypeSelect.addEventListener('change', () => {
+      const selected = mangoTypeSelect.value;
+      pricePerKgInput.value = mangoPrices[selected] || '';
       calculateTotal();
     });
-    
-</script>
+
+    quantityInput.addEventListener('input', calculateTotal);
+
+    function calculateTotal() {
+      const price = parseFloat(pricePerKgInput.value);
+      const quantity = parseFloat(quantityInput.value);
+      if (!isNaN(price) && !isNaN(quantity)) {
+        totalPriceInput.value = price * quantity;
+      }
+    }
+
+    function adjustQuantity(amount) {
+      let current = parseFloat(quantityInput.value) || 0;
+      let updated = current + amount;
+      if (updated < 5) updated = 5;
+      quantityInput.value = updated;
+      calculateTotal();
+    }
+
+    paymentMethodSelect.addEventListener('change', () => {
+      const method = paymentMethodSelect.value;
+      const show = method !== 'COD' && method !== '';
+      paymentInstructions.classList.toggle('hidden', !show);
+      transactionIdInput.required = show;
+      accountNumberInput.required = show;
+    });
+
+    document.getElementById('orderForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Order submitted!'); // Replace with actual submission logic
+    });
+  </script>
 </body>
+</html>
 </html>
