@@ -122,7 +122,16 @@
 
     <div id="paymentInstruction" class="alert alert-info d-none"></div>
 
-    <div id="paymentFields" class="d-none">
+    div class="mb-3">
+        <label for="trxId" id="labelTrx" class="form-label">লেনদেন নম্বর *</label>
+        <input type="text" class="form-control" id="trxId" name="trx_id" />
+      </div>
+      <div class="mb-3">
+        <label for="senderNumber" id="labelSender" class="form-label">প্রেরক নম্বর *</label>
+        <input type="tel" class="form-control" id="senderNumber" name="sender_number" />
+      </div>
+
+    <!--<div id="paymentFields" class="d-none">
       <div class="mb-3">
         <label for="trxId" id="labelTrx" class="form-label">লেনদেন নম্বর *</label>
         <input type="text" class="form-control" id="trxId" name="trx_id" />
@@ -131,7 +140,7 @@
         <label for="senderNumber" id="labelSender" class="form-label">প্রেরক নম্বর *</label>
         <input type="tel" class="form-control" id="senderNumber" name="sender_number" />
       </div>
-    </div>
+    </div>-->
 
     <div class="mb-3">
       <label for="comment" id="labelComment" class="form-label">মন্তব্য</label>
