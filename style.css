@@ -9,6 +9,7 @@ header img {
 /* Highlight the active nav link */
 .nav-link.active {
   text-decoration: underline;
+  border-bottom: 2px solid yellow;
   font-weight: bold;
 }
 .text-orange {
