@@ -8,8 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const paymentFields = document.getElementById('paymentFields');
   const trxId = document.getElementById('trxId');
   const senderNumber = document.getElementById('senderNumber');
-  const noteField = document.getElementById('note');
-  const paymentConfirmed = document.getElementById('paymentConfirmed');
 
   // Auto calculate total price
   function updateTotal() {
