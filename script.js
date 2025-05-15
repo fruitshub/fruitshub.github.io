@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // ===== ORDER PAGE LOGIC =====
   const form = document.getElementById('orderForm');
   const quantity = document.getElementById('quantity');
   const pricePerKg = document.getElementById('pricePerKg');
@@ -12,35 +13,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Auto calculate total price
   function updateTotal() {
-    const qty = parseFloat(quantity.value);
-    const price = parseFloat(pricePerKg.value);
-    totalPrice.value = (!isNaN(qty) && !isNaN(price)) ? (qty * price).toFixed(2) : '';
+    const qty = parseFloat(quantity?.value);
+    const price = parseFloat(pricePerKg?.value);
+    if (totalPrice) {
+      totalPrice.value = (!isNaN(qty) && !isNaN(price)) ? (qty * price).toFixed(2) : '';
+    }
   }
 
-  quantity.addEventListener('input', updateTotal);
-  pricePerKg.addEventListener('input', updateTotal);
+  quantity?.addEventListener('input', updateTotal);
+  pricePerKg?.addEventListener('input', updateTotal);
 
   // Show/hide payment fields
-  paymentSelect.addEventListener('change', () => {
+  paymentSelect?.addEventListener('change', () => {
     if (paymentSelect.value === 'cod') {
-      paymentFields.style.display = 'none';
-      trxId.removeAttribute('required');
-      senderNumber.removeAttribute('required');
-      paymentConfirmed.value = 'Not Required';
+      if (paymentFields) paymentFields.style.display = 'none';
+      trxId?.removeAttribute('required');
+      senderNumber?.removeAttribute('required');
+      if (paymentConfirmed) paymentConfirmed.value = 'Not Required';
     } else {
-      paymentFields.style.display = 'block';
-      trxId.setAttribute('required', true);
-      senderNumber.setAttribute('required', true);
-      paymentConfirmed.value = 'Confirmed';
+      if (paymentFields) paymentFields.style.display = 'block';
+      trxId?.setAttribute('required', true);
+      senderNumber?.setAttribute('required', true);
+      if (paymentConfirmed) paymentConfirmed.value = 'Confirmed';
     }
   });
 
-  // Language support
+  // ===== LANGUAGE TOGGLE =====
   let currentLang = localStorage.getItem('lang') || 'bn';
-  setLanguage(currentLang);
+  const langEnBtn = document.getElementById('langEn');
+  const langBnBtn = document.getElementById('langBn');
 
-  document.getElementById('langEn').addEventListener('click', () => setLanguage('en'));
-  document.getElementById('langBn').addEventListener('click', () => setLanguage('bn'));
+  setLanguage(currentLang); // Apply saved/default language
+
+  if (langEnBtn && langBnBtn) {
+    langEnBtn.addEventListener('click', () => setLanguage('en'));
+    langBnBtn.addEventListener('click', () => setLanguage('bn'));
+    highlightActiveLangButton();
+  }
 
   function setLanguage(lang) {
     currentLang = lang;
@@ -57,16 +66,20 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function highlightActiveLangButton() {
-    document.getElementById('langEn').classList.toggle('btn-warning', currentLang === 'en');
-    document.getElementById('langBn').classList.toggle('btn-warning', currentLang === 'bn');
-    document.getElementById('langEn').classList.toggle('btn-light', currentLang !== 'en');
-    document.getElementById('langBn').classList.toggle('btn-light', currentLang !== 'bn');
+    if (langEnBtn && langBnBtn) {
+      langEnBtn.classList.toggle('btn-warning', currentLang === 'en');
+      langBnBtn.classList.toggle('btn-warning', currentLang === 'bn');
+      langEnBtn.classList.toggle('btn-light', currentLang !== 'en');
+      langBnBtn.classList.toggle('btn-light', currentLang !== 'bn');
+    }
   }
 
+  // ===== NAVIGATION ACTIVE HIGHLIGHT =====
   function highlightActiveNav() {
-    const currentPage = location.pathname.split("/").pop();
+    const currentPage = location.pathname.split("/").pop() || "index.html";
     document.querySelectorAll('.nav-link').forEach(link => {
-      if (link.getAttribute('href') === currentPage) {
+      const href = link.getAttribute('href');
+      if (href === currentPage || (currentPage === "" && href === "index.html")) {
         link.classList.add('active');
       } else {
         link.classList.remove('active');
