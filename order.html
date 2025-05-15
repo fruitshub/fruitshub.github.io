@@ -7,6 +7,9 @@
   <link rel="icon" href="favicon.png" type="image/png" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .hidden { display: none; }
+  </style>
 </head>
 <body>
 
@@ -33,8 +36,8 @@
     </div>
     <div class="overflow-hidden text-center">
       <div class="marquee lang fw-bold text-orange"
-        data-en="Tree-ripened Gopalbhog, Khirsapat, Himsagar, Langra, Fazli from Nachole, Chapainawabganj — directly from orchard to your home. Trust and quality are our promise. Contact: 01743-127122"
-        data-bn="চাঁপাইনবাবগঞ্জ, নাচোলের গাছপাকা গোপালভোগ, ক্ষিরসাপাত, হিমসাগর, ল্যাংড়া, ফজলি — সরাসরি বাগান থেকে ঘরে। বিশ্বস্ততা ও গুণগত মান আমাদের অঙ্গীকার। যোগাযোগ: ০১৭৪৩-১২৭১২২">
+           data-en="Tree-ripened Gopalbhog, Khirsapat, Himsagar, Langra, Fazli from Nachole, Chapainawabganj — directly from orchard to your home. Trust and quality are our promise. Contact: 01743-127122"
+           data-bn="চাঁপাইনবাবগঞ্জ, নাচোলের গাছপাকা গোপালভোগ, ক্ষিরসাপাত, হিমসাগর, ল্যাংড়া, ফজলি — সরাসরি বাগান থেকে ঘরে। বিশ্বস্ততা ও গুণগত মান আমাদের অঙ্গীকার। যোগাযোগ: ০১৭৪৩-১২৭১২২">
         চাঁপাইনবাবগঞ্জ, নাচোলের গাছপাকা গোপালভোগ, ক্ষিরসাপাত, হিমসাগর, ল্যাংড়া, ফজলি — সরাসরি বাগান থেকে ঘরে। বিশ্বস্ততা ও গুণগত মান আমাদের অঙ্গীকার। যোগাযোগ: ০১৭৪৩-১২৭১২২
       </div>
     </div>
@@ -49,82 +52,110 @@
   </nav>
 
   <!-- Main Content -->
-  <main class="container mt-5 form-section">
-    <h2 class="mb-4 text-center lang" data-en="Place Your Order" data-bn="আপনার অর্ডার দিন">আপনার অর্ডার দিন</h2>
-
-    <p class="lang text-center mb-4"
-       data-en="Please fill out the form below to place your mango order. You can choose your preferred mango type, quantity, and payment method. We offer Cash on Delivery, as well as bKash, Nagad, Rocket, and Bank Transfer options. Once submitted, your order will be saved and you'll be redirected for payment (if selected)."
-       data-bn="আপনার পছন্দের আম, পরিমাণ ও পেমেন্ট পদ্ধতি বেছে নিয়ে নিচের ফর্মটি পূরণ করুন। আমরা ক্যাশ অন ডেলিভারি ছাড়াও বিকাশ, নগদ, রকেট ও ব্যাংক ট্রান্সফার পদ্ধতি গ্রহণ করি। জমা দেওয়ার পর অর্ডার সংরক্ষিত হবে এবং প্রয়োজনে আপনাকে পেমেন্টের জন্য রিডাইরেক্ট করা হবে।">
+  <main class="container mt-5">
+    <h2 class="text-center lang" data-en="Place Your Order" data-bn="আপনার অর্ডার দিন">আপনার অর্ডার দিন</h2>
+    <p class="text-center lang mb-4"
+       data-en="Please fill out the form below to place your mango order..."
+       data-bn="আপনার পছন্দের আম, পরিমাণ ও পেমেন্ট পদ্ধতি বেছে নিয়ে নিচের ফর্মটি পূরণ করুন...">
       আপনার পছন্দের আম, পরিমাণ ও পেমেন্ট পদ্ধতি বেছে নিয়ে নিচের ফর্মটি পূরণ করুন...
     </p>
 
+    <form id="orderForm" class="row g-3">
+      <div class="col-md-6">
+        <label for="name" class="form-label">Name *</label>
+        <input type="text" class="form-control" id="name" required>
+      </div>
 
-  <h1>Mango Order Form</h1>
-  <form id="orderForm">
+      <div class="col-md-6">
+        <label for="phone" class="form-label">Phone *</label>
+        <input type="tel" class="form-control" id="phone" required>
+      </div>
 
-    <label for="name">Name *</label>
-    <input type="text" id="name" required>
+      <div class="col-md-6">
+        <label for="email" class="form-label">Email (Optional)</label>
+        <input type="email" class="form-control" id="email">
+      </div>
 
-    <label for="phone">Phone *</label>
-    <input type="tel" id="phone" required>
+      <div class="col-md-6">
+        <label for="deliveryDate" class="form-label">Expected Delivery Date *</label>
+        <input type="date" class="form-control" id="deliveryDate" required>
+      </div>
 
-    <label for="email">Email (Optional)</label>
-    <input type="email" id="email">
+      <div class="col-12">
+        <label for="address" class="form-label">Address *</label>
+        <textarea class="form-control" id="address" rows="2" required></textarea>
+      </div>
 
-    <label for="address">Address *</label>
-    <textarea id="address" required></textarea>
+      <div class="col-md-6">
+        <label for="mangoType" class="form-label">Mango Type *</label>
+        <select class="form-select" id="mangoType" required>
+          <option value="">-- Select Mango Type --</option>
+          <option value="Langra">Langra</option>
+          <option value="Himsagar">Himsagar</option>
+          <option value="Fazli">Fazli</option>
+          <option value="Amrapali">Amrapali</option>
+        </select>
+      </div>
 
-    <label for="mangoType">Mango Type *</label>
-    <select id="mangoType" required>
-      <option value="">-- Select Mango Type --</option>
-      <option value="Langra">Langra</option>
-      <option value="Himsagar">Himsagar</option>
-      <option value="Fazli">Fazli</option>
-      <option value="Amrapali">Amrapali</option>
-    </select>
+      <div class="col-md-6">
+        <label for="pricePerKg" class="form-label">Price per kg (৳)</label>
+        <input type="number" class="form-control" id="pricePerKg" readonly>
+      </div>
 
-    <label for="pricePerKg">Price per kg (৳)</label>
-    <input type="number" id="pricePerKg" readonly>
+      <div class="col-md-6">
+        <label for="quantity" class="form-label">Quantity (kg) *</label>
+        <div class="input-group">
+          <input type="number" class="form-control" id="quantity" min="5" step="1" value="5" required>
+          <button type="button" class="btn btn-outline-success" onclick="adjustQuantity(5)">+5</button>
+          <button type="button" class="btn btn-outline-danger" onclick="adjustQuantity(-5)">-5</button>
+        </div>
+      </div>
 
-    <label for="quantity">Quantity (kg) *</label>
-    <div>
-      <input type="number" id="quantity" min="5" step="1" value="5" required>
-      <button type="button" onclick="adjustQuantity(5)">+5</button>
-      <button type="button" onclick="adjustQuantity(-5)">-5</button>
-    </div>
+      <div class="col-md-6">
+        <label for="totalPrice" class="form-label">Total Price (৳)</label>
+        <input type="number" class="form-control" id="totalPrice" readonly>
+      </div>
 
-    <label for="totalPrice">Total Price (৳)</label>
-    <input type="number" id="totalPrice" readonly>
+      <div class="col-md-6">
+        <label for="paymentMethod" class="form-label">Payment Method *</label>
+        <select class="form-select" id="paymentMethod" required>
+          <option value="">-- Select Payment Method --</option>
+          <option value="COD">Cash on Delivery</option>
+          <option value="Bkash">Bkash</option>
+          <option value="Nagad">Nagad</option>
+          <option value="Rocket">Rocket</option>
+          <option value="Bank">Bank Transfer</option>
+        </select>
+      </div>
 
-    <label for="deliveryDate">Expected Delivery Date *</label>
-    <input type="date" id="deliveryDate" required>
+      <div class="col-12 hidden" id="paymentInstructions">
+        <div class="alert alert-info">
+          <strong>Payment Instructions:</strong> Please send your payment to the provided number and enter the details below.
+        </div>
 
-    <label for="paymentMethod">Payment Method *</label>
-    <select id="paymentMethod" required>
-      <option value="">-- Select Payment Method --</option>
-      <option value="COD">Cash on Delivery</option>
-      <option value="Bkash">Bkash</option>
-      <option value="Nagad">Nagad</option>
-      <option value="Rocket">Rocket</option>
-      <option value="Bank">Bank Transfer</option>
-    </select>
+        <div class="mb-3">
+          <label for="transactionId" class="form-label">Transaction ID *</label>
+          <input type="text" class="form-control" id="transactionId">
+        </div>
 
-    <div id="paymentInstructions" class="hidden">
-      <p><strong>Payment Instructions:</strong> Send money to the displayed number and enter your details below.</p>
+        <div class="mb-3">
+          <label for="accountNumber" class="form-label">Account Number *</label>
+          <input type="text" class="form-control" id="accountNumber">
+        </div>
+      </div>
 
-      <label for="transactionId">Transaction ID *</label>
-      <input type="text" id="transactionId">
+      <div class="col-12">
+        <label for="comment" class="form-label">Comment</label>
+        <textarea class="form-control" id="comment" rows="2"></textarea>
+      </div>
 
-      <label for="accountNumber">Account Number *</label>
-      <input type="text" id="accountNumber">
-    </div>
+      <div class="col-12 text-center">
+        <button type="submit" class="btn btn-success px-5">Submit Order</button>
+      </div>
+    </form>
+  </main>
 
-    <label for="comment">Comment</label>
-    <textarea id="comment"></textarea>
-
-    <button type="submit">Submit Order</button>
-  </form>
-
+  <!-- Script -->
   <script>
     const mangoPrices = {
       "Langra": 100,
@@ -176,8 +207,9 @@
 
     document.getElementById('orderForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      alert('Order submitted!'); // Replace with actual submission logic
+      alert('Order submitted!'); // Integrate Google Sheets or backend logic here
     });
   </script>
 </body>
 </html>
+
