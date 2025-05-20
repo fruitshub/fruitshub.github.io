@@ -74,11 +74,42 @@
         <label for="email" class="form-label lang" data-en="Email Address" data-bn="ইমেইল ঠিকানা">ইমেইল ঠিকানা</label>
         <input type="email" name="email" class="form-control" id="email" />
       </div>
-
+      
+<!--
       <div class="mb-3">
         <label for="address" class="form-label lang" data-en="Delivery Address *" data-bn="ডেলিভারি ঠিকানা *">ডেলিভারি ঠিকানা *</label>
         <textarea name="address" class="form-control" id="address" rows="3" required></textarea>
       </div>
+-->
+      <!-- Address Fields -->
+<div class="mb-3">
+  <label for="division" class="form-label lang" data-en="Division" data-bn="বিভাগ">বিভাগ</label>
+  <select class="form-select" id="division" name="division" required onchange="populateDistricts()">
+    <option value="">Select Division</option>
+    <!-- Options will be populated dynamically -->
+  </select>
+</div>
+
+<div class="mb-3">
+  <label for="district" class="form-label lang" data-en="District" data-bn="জেলা">জেলা</label>
+  <select class="form-select" id="district" name="district" required onchange="populateUpazilas()">
+    <option value="">Select District</option>
+    <!-- Options will be populated dynamically -->
+  </select>
+</div>
+
+<div class="mb-3">
+  <label for="upazila" class="form-label lang" data-en="Upazila" data-bn="উপজেলা">উপজেলা</label>
+  <select class="form-select" id="upazila" name="upazila" required>
+    <option value="">Select Upazila</option>
+    <!-- Options will be populated dynamically -->
+  </select>
+</div>
+
+<div class="mb-3">
+  <label for="streetAddress" class="form-label lang" data-en="Street Address" data-bn="রাস্তার ঠিকানা">রাস্তার ঠিকানা</label>
+  <input type="text" class="form-control" id="streetAddress" name="street_address" required />
+</div>
 
       <div class="mb-3">
         <label for="mangoType" class="form-label lang" data-en="Select Mango Type" data-bn="আমের ধরণ নির্বাচন করুন">আমের ধরণ নির্বাচন করুন</label>
@@ -98,6 +129,19 @@
         <label for="quantity" class="form-label lang" data-en="Quantity (KG)" data-bn="পরিমাণ (কেজি)">পরিমাণ (কেজি)</label>
         <input type="number" name="quantity" id="quantity" class="form-control" min="5" step="5" value="5" required onchange="calculateTotal()" />
       </div>
+      div class="mb-3">
+  <label class="form-label lang" data-en="Courier Delivery Type" data-bn="কুরিয়ার ডেলিভারি ধরণ">কুরিয়ার ডেলিভারি ধরণ</label>
+  <div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="courier_type" id="pointDelivery" value="point" checked onchange="calculateTotal()" />
+      <label class="form-check-label lang" for="pointDelivery" data-en="Point Delivery" data-bn="পয়েন্ট ডেলিভারি">পয়েন্ট ডেলিভারি</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="courier_type" id="homeDelivery" value="home" onchange="calculateTotal()" />
+      <label class="form-check-label lang" for="homeDelivery" data-en="Home Delivery" data-bn="হোম ডেলিভারি">হোম ডেলিভারি</label>
+    </div>
+  </div>
+</div>
 
       <div class="mb-3">
         <label class="form-label lang" data-en="Total Price" data-bn="মোট মূল্য">মোট মূল্য</label>
