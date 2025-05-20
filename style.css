@@ -68,3 +68,7 @@ header img {
     line-height: 1.2;
   }
 }
+
+.custom-header {
+  background-color: #145A32; /* or try #27AE60 or #F39C12 */
+}
