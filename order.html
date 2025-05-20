@@ -82,27 +82,24 @@
       </div>
 -->
       <!-- Address Fields -->
-<div class="mb-3">
-  <label for="division" class="form-label lang" data-en="Division" data-bn="বিভাগ">বিভাগ</label>
-  <select class="form-select" id="division" name="division" required onchange="populateDistricts()">
+<div>
+  <label for="division">Division:</label>
+  <select id="division" name="division" onchange="populateDistricts()" required>
     <option value="">Select Division</option>
-    <!-- Options will be populated dynamically -->
   </select>
 </div>
 
-<div class="mb-3">
-  <label for="district" class="form-label lang" data-en="District" data-bn="জেলা">জেলা</label>
-  <select class="form-select" id="district" name="district" required onchange="populateUpazilas()">
+<div>
+  <label for="district">District:</label>
+  <select id="district" name="district" onchange="populateUpazilas()" required>
     <option value="">Select District</option>
-    <!-- Options will be populated dynamically -->
   </select>
 </div>
 
-<div class="mb-3">
-  <label for="upazila" class="form-label lang" data-en="Upazila" data-bn="উপজেলা">উপজেলা</label>
-  <select class="form-select" id="upazila" name="upazila" required>
+<div>
+  <label for="upazila">Upazila:</label>
+  <select id="upazila" name="upazila" required>
     <option value="">Select Upazila</option>
-    <!-- Options will be populated dynamically -->
   </select>
 </div>
 
